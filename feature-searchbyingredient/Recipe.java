@@ -5,12 +5,13 @@ public class Recipe {
     private ArrayList<String>ingredients; //elements for the recipe
     private int portion; //How many people
     private int calories; //Calories on the recipe
+    private double duration; //time to prepare the meal in hours
     private ArrayList<String>steps; //Steps to prepare for the recipe;
+
     private boolean vegeterian;//if its veg
     private boolean gultenfree; //if its gultenfree or not
     private boolean dairyFree; //if it has egg/milk false otherwise true
-
-    private double duration; //time to prepare the meal in hours
+ 
     public Recipe(String rName, int rDifficulty, ArrayList<String>rIngredient, int rPortion, int rCalories, ArrayList<String>rSteps, boolean rVegeterian, boolean rGulenfree, boolean rdairyFree, double rDuration)
     {
         name=rName;
@@ -56,6 +57,10 @@ public class Recipe {
 
     public ArrayList<String> getSteps(){
         return  steps;
+    }
+
+    public double getDuration(){
+        return duration;
     }
 
     public boolean isVegeterian(){
