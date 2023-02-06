@@ -1,10 +1,8 @@
-package com.example.quickkitchen.presentation;
+package comp3350.quickkitchen.presentation;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-
-import com.example.quickkitchen.R;
 
 public class Messages {
     public static void fatalError(final Activity owner, String message) {

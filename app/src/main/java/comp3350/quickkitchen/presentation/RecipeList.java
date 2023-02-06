@@ -1,6 +1,4 @@
-package com.example.quickkitchen.presentation;
-
-import androidx.appcompat.app.AppCompatActivity;
+package comp3350.quickkitchen.presentation;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,9 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.quickkitchen.feature_searchbyingredients.Recipe;
-import com.example.quickkitchen.R;
-import com.example.quickkitchen.feature_searchbyingredients.IngredientSearch;
+import androidx.appcompat.app.AppCompatActivity;
+
+import comp3350.quickkitchen.R;
+import comp3350.quickkitchen.feature_searchbyingredients.IngredientSearch;
+import comp3350.quickkitchen.feature_searchbyingredients.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;

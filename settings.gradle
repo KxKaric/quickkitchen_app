@@ -12,6 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "My Application"
-include ':app'
+rootProject.name = "a02-g14-quickkitchen"
 include ':app'

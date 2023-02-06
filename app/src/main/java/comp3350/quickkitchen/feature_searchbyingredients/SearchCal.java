@@ -1,4 +1,4 @@
-package com.example.quickkitchen.feature_searchbyingredients;
+package comp3350.quickkitchen.feature_searchbyingredients;
 
 import java.util.ArrayList;
 public class SearchCal {

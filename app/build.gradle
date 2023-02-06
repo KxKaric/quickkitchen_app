@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.myapplication'
+    namespace 'comp3350.quickkitchen'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "comp3350.quickkitchen"
         minSdk 23
         targetSdk 33
         versionCode 1
