@@ -7,5 +7,5 @@ public class Main {
         //ArrayList<Recipe> show = obj.getDatabase();
 
         IngredientSearch x = new IngredientSearch("Cheese");
-        x.showList();
+        x.showList(); //abcd
     }}
