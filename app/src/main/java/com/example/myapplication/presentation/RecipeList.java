@@ -34,7 +34,7 @@ public class RecipeList extends AppCompatActivity {
 
         Intent intent = getIntent();
         ArrayList<String> result = intent.getStringArrayListExtra("result");
-        s = new IngredientSearch("potato"); //***************
+        s = new IngredientSearch(result); //***************
         try
         {
             //list = new ArrayList<>();
