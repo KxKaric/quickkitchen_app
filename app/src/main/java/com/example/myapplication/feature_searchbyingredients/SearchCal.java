@@ -24,5 +24,12 @@ public class SearchCal {
         }
         return result;
     }
+    public ArrayList<String> searchStri(int calory){
+        for(int i=0; i<database.getDatabase().size();i++){
+            if (database.getDatabase().get(i).getCalories() <= calory)
+                result1.add(database.getDatabase().get(i).toString());
+        }
+        return result1;
+    }
 
 }
