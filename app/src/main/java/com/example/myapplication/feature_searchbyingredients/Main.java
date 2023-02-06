@@ -6,6 +6,6 @@ public class Main {
         //RecipeDatabase obj = new RecipeDatabase();
         //ArrayList<Recipe> show = obj.getDatabase();
 
-        IngredientSearch x = new IngredientSearch("Cheese");
-        x.showList(); //abcded
+        //IngredientSearch x = new IngredientSearch("Cheese");
+        //x.showList(); //abcded
     }}
