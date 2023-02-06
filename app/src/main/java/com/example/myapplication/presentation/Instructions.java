@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 
 public class Instructions extends AppCompatActivity {
-
+    //Test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
