@@ -1,4 +1,4 @@
-package com.example.myapplication.feature_searchbyingredients;
+package com.example.quickkitchen.feature_searchbyingredients;
 
 public class Main {
     public static void main(String[] args)

@@ -1,4 +1,4 @@
-package com.quickkitchen.myapplication;
+package comp3350.quickkitchen;
 
 import android.content.Context;
 

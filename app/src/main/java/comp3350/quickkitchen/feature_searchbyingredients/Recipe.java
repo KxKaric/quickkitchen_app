@@ -1,4 +1,4 @@
-package com.example.myapplication.feature_searchbyingredients;
+package com.example.quickkitchen.feature_searchbyingredients;
 
 import java.util.ArrayList;
 public class Recipe {
@@ -50,6 +50,10 @@ public class Recipe {
 
     public int getPortion(){
         return portion;
+    }
+
+    public String getCaloriesInString(){
+        return Integer.toString(calories);
     }
 
     public int getCalories(){

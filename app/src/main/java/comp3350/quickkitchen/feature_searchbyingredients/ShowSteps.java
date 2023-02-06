@@ -1,4 +1,4 @@
-package com.example.myapplication.feature_searchbyingredients;
+package com.example.quickkitchen.feature_searchbyingredients;
 
 import java.util.ArrayList;
 

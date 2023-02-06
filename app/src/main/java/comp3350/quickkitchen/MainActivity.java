@@ -1,16 +1,15 @@
-package com.example.myapplication;
+package comp3350.quickkitchen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 
-import com.example.myapplication.presentation.RecipeList;
+import com.example.quickkitchen.presentation.RecipeList;
 
 import java.util.ArrayList;
 

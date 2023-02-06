@@ -1,13 +1,12 @@
-package com.example.myapplication.presentation;
+package com.example.quickkitchen.presentation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.myapplication.R;
+import com.example.quickkitchen.R;
 
 public class Instructions extends AppCompatActivity {
     //Test

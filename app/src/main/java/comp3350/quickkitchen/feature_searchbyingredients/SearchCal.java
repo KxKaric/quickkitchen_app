@@ -1,10 +1,10 @@
-package com.example.myapplication.feature_searchbyingredients;
-import com.example.myapplication.feature_searchbyingredients.Recipe;
-import com.example.myapplication.feature_searchbyingredients.RecipeDatabase;
+package com.example.quickkitchen.feature_searchbyingredients;
 
 import java.util.ArrayList;
 public class SearchCal {
     private ArrayList<Recipe> result;
+
+    private ArrayList<String> result1;
     private RecipeDatabase database;
     public SearchCal(int calory){
         database= new RecipeDatabase();
