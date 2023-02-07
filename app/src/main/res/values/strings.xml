@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">a02-g14-quickkitchen</string>
+    <string name="Poutine">recipe_title</string>
 </resources>

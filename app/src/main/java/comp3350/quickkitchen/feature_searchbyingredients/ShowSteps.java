@@ -12,7 +12,7 @@ public class ShowSteps {
     }
 
     public ArrayList<String> showSteps(String name){
-        ArrayList<String>emptyList = new ArrayList<String>();
+        ArrayList<String>emptyList = new ArrayList<>();
         for(int i=0; i<rawDatabase.size(); i++){
             if(rawDatabase.get(i).getName().equalsIgnoreCase(name))
                 return rawDatabase.get(i).getSteps();

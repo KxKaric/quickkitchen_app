@@ -1,18 +1,21 @@
-package comp3350.quickkitchen;
+package comp3350.quickkitchen.presentation;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import comp3350.quickkitchen.presentation.RecipeList;
-
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+import comp3350.quickkitchen.R;
+
+public class HomeActivity extends AppCompatActivity {
 
     private CheckBox potatoCheck, cheeseCheck;
     private Button search;
@@ -21,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
         setTitle("Choose your own ingredients");
 
 
@@ -72,28 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<String> getResult(){return result;}
 
-    public void buttonPotatoOnclick(View v){
-
-    }
-
-    public void buttonCheeseOnclick(View v){
-
-    }
-
     public void buttonSearchOnclick(View v){
-        //launch a new activity
 
-
-        //View myview = findViewById(R.id.searchBtn);
-
-       // Log.d("a",result.toString());
+        // Log.d("a",result.toString());
 
         Intent i = new Intent(this, RecipeList.class);
         i.putExtra("result",result);
         startActivity(i);
     }
-
-
 
    /* public String handleText(View v){
         String input;
@@ -103,4 +92,19 @@ public class MainActivity extends AppCompatActivity {
         return input;
 
     }*/
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+        return true;
+    }
+
+
+
 }

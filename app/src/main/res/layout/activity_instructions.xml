@@ -4,27 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".presentation.Instructions">
+    android:layout_marginHorizontal="16dp">
 
     <TextView
         android:id="@+id/recipeName"
-        android:layout_width="299dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="664dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="recipeName"
+        android:textColor="#000000"
+        android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="413dp"
-        android:layout_height="639dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="76dp"></LinearLayout>
+    <ListView
+        android:id="@+id/instrutions_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:choiceMode="none"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recipeName" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="Construting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintTop_toBottomOf="@+id/instrutions_list" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="Construting"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instrutions_list" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

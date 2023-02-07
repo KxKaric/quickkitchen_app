@@ -12,7 +12,7 @@
         android:theme="@style/Theme.A02g14quickkitchen"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.HomeActivity"
             android:exported="true"
             android:label="QuickKitchen">
             <intent-filter>
