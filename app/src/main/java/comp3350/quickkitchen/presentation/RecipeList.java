@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -90,35 +91,44 @@ public class RecipeList extends AppCompatActivity {
             searchRecipe.setInputType(InputType.TYPE_CLASS_TEXT);
             searchCalories.setInputType(InputType.TYPE_CLASS_NUMBER);
 
+
+
             filteredList = new ArrayList<>();
             searchRecipe.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    return false;
+                    if(!query.isEmpty()){
+                        filteredList.clear();
+                        for(Recipe recipe : recipeList){
+                            if(recipe.getName().toLowerCase().contains(query.toLowerCase())){
+                                filteredList.add(recipe);
+                            }
+                        }
+                        updateListView(filteredList);
+                        searchCalories.setQuery("",false);
+                    }
+                    return true;
                 }
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     //RecipeList.this.recipeArrayAdapter.getFilter().filter(recipe);
-                    filteredList.clear();
-                    for(Recipe recipe : recipeList){
-                        if(recipe.getName().toLowerCase().contains(newText.toLowerCase())){
-                            filteredList.add(recipe);
-                        }
-                    }
-                    updateListView(filteredList);
-                    return true;
+
+                    return false;
                 }
             });
             searchCalories.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    filteredList.clear();
-                    for(Recipe recipe : recipeList){
-                        if(recipe.getCaloriesInString().compareTo(query)<=0){
-                            filteredList.add(recipe);
+                    if(!query.isEmpty()){
+                        filteredList.clear();
+                        for(Recipe recipe : recipeList){
+                            if(recipe.getCalories()<=Integer.parseInt(query)) {
+                                filteredList.add(recipe);
+                            }
                         }
+                        updateListView(filteredList);
+                        searchRecipe.setQuery("",false);
                     }
-                    updateListView(filteredList);
                     return false;
                 }
                 @Override
