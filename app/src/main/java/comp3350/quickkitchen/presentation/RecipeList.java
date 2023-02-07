@@ -28,7 +28,7 @@ public class RecipeList extends AppCompatActivity {
     private List<Recipe> recipeList;
     private List<Recipe> filteredList;
     private String chosenRecipe;
-    private IngredientSearch s;
+    private IngredientSearch ingSearch;
     private ArrayAdapter<Recipe> recipeArrayAdapter;
 
     @Override
@@ -42,8 +42,8 @@ public class RecipeList extends AppCompatActivity {
             ArrayList<String> result = intent.getStringArrayListExtra("result");
 
             if(!result.isEmpty()) {
-                s = new IngredientSearch(result);
-                recipeList = s.getIngredientSearchResult();
+                ingSearch = new IngredientSearch(result);
+                recipeList = ingSearch.getIngredientSearchResult();
                 //list = s.getStringList();
             }
 
@@ -80,7 +80,7 @@ public class RecipeList extends AppCompatActivity {
                     nextBtn.setEnabled(true);
 
                     Log.e("test","onItemClick: "+position);
-                    Log.e("test","result: "+s.getStringList());
+                    Log.e("test","result: "+ingSearch.getStringList());
                     Log.e("test","result: "+chosenRecipe);
 
                 }
