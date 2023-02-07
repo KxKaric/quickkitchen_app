@@ -1,4 +1,4 @@
-package comp3350.quickkitchen.feature_searchbyingredients;
+package comp3350.quickkitchen.features;
 
 public class Main {
     public static void main(String[] args)

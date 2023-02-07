@@ -22,11 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.Instructions"
+            android:name=".presentation.InstructionsActivity"
             android:exported="false"
             android:label="Instructions" />
         <activity
-            android:name=".presentation.RecipeList"
+            android:name=".presentation.RecipeListActivity"
             android:exported="false"
             android:label="Recipe List" />
     </application>

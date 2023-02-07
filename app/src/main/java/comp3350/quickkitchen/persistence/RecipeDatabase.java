@@ -1,6 +1,8 @@
-package comp3350.quickkitchen.feature_searchbyingredients;
+package comp3350.quickkitchen.persistence;
 
 import java.util.ArrayList;
+
+import comp3350.quickkitchen.objects.Recipe;
 
 public class RecipeDatabase {
 
@@ -39,6 +41,32 @@ public class RecipeDatabase {
         helperSteps2.add( "Put cheese.");
         Recipe two = new Recipe("Poutine", 3, helperIngredient2, 2, 900, helperSteps2, false, false, false, 1);
         listData.add(two);
+
+        //third recipe
+        ArrayList<String> helperIngredient3 = new ArrayList<>();
+        helperIngredient3.add("ONION");
+        helperIngredient3.add("Oil");
+        ArrayList<String> helperSteps3 = new ArrayList<>();
+        helperSteps3.add( "Wash onions.");
+        helperSteps3.add( "Cut the onions into thick slices.");
+        helperSteps3.add( "Fry.");
+        Recipe third = new Recipe("Onion Ring", 3, helperIngredient3, 2, 500, helperSteps3, false, false, false, 1);
+        listData.add(third);
+
+        //fourth recipe
+        ArrayList<String> helperIngredient4 = new ArrayList<>();
+        helperIngredient4.add("flour");
+        helperIngredient4.add("Cheese");
+        helperIngredient4.add("tomato");
+        helperIngredient4.add("onion");
+        ArrayList<String> helperSteps4 = new ArrayList<>();
+        helperSteps4.add( "test.");
+        helperSteps4.add( "test.");
+        helperSteps4.add( "test.");
+        helperSteps4.add( "test.");
+        helperSteps4.add( "test.");
+        Recipe fourth = new Recipe("Pizza", 3, helperIngredient4, 2, 1000, helperSteps4, false, false, false, 1);
+        listData.add(fourth);
     }
 
     public ArrayList<Recipe> getDatabase(){

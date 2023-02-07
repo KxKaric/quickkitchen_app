@@ -1,24 +1,20 @@
 package comp3350.quickkitchen.presentation;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.quickkitchen.R;
-import comp3350.quickkitchen.feature_searchbyingredients.ShowSteps;
+import comp3350.quickkitchen.features.ShowSteps;
 
-public class Instructions extends AppCompatActivity {
+public class InstructionsActivity extends AppCompatActivity {
     //Test
 
     private ShowSteps showSteps;

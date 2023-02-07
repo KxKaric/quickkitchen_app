@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,17 +13,18 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.quickkitchen.R;
-import comp3350.quickkitchen.feature_searchbyingredients.IngredientSearch;
-import comp3350.quickkitchen.feature_searchbyingredients.Recipe;
+import comp3350.quickkitchen.features.IngredientSearch;
+import comp3350.quickkitchen.objects.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecipeList extends AppCompatActivity {
+public class RecipeListActivity extends AppCompatActivity {
     private List<Recipe> recipeList;
     private List<Recipe> filteredList;
     private String chosenRecipe;
@@ -44,7 +44,10 @@ public class RecipeList extends AppCompatActivity {
             if(!result.isEmpty()) {
                 ingSearch = new IngredientSearch(result);
                 recipeList = ingSearch.getIngredientSearchResult();
-                //list = s.getStringList();
+                if(recipeList.isEmpty()){
+                    Toast toast = Toast.makeText(getApplicationContext(),"Can not find any associated recipes, please go back and select another ingredients",Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
 
             recipeArrayAdapter = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1, recipeList){
@@ -166,7 +169,7 @@ public class RecipeList extends AppCompatActivity {
     }
 
     public void buttonNextOnclick(View v){
-        Intent i = new Intent(this, Instructions.class);
+        Intent i = new Intent(this, InstructionsActivity.class);
         i.putExtra("chosenRecipe",chosenRecipe);
         startActivity(i);
     }

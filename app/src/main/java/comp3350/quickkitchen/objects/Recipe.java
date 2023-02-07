@@ -1,4 +1,4 @@
-package comp3350.quickkitchen.feature_searchbyingredients;
+package comp3350.quickkitchen.objects;
 
 import java.util.ArrayList;
 public class Recipe {

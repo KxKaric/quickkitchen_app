@@ -9,27 +9,113 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="400dp"
+            android:columnCount="3"
+            android:rowCount="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CheckBox
+                android:id="@+id/cheeseBtn"
+                style="@android:style/Widget.CompoundButton.CheckBox"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:checked="false"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="CHEESE"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/potatoBtn"
+                style="@android:style/Widget.CompoundButton.CheckBox"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:checked="false"
+                android:clickable="true"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="POTATO"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/onionBtn"
+                style="@android:style/Widget.CompoundButton.CheckBox"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:checked="false"
+                android:clickable="true"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="ONION"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/flourBtn"
+                style="@android:style/Widget.CompoundButton.CheckBox"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:checked="false"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="FLOUR"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/tomatoBtn"
+                style="@android:style/Widget.CompoundButton.CheckBox"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:checked="false"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="TOMATO"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/nothingBtn"
+                style="@android:style/Widget.CompoundButton.CheckBox"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:checked="false"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="NOTHING"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </GridLayout>
 
         <Button
             android:id="@+id/searchBtn"
             android:layout_width="150dp"
             android:layout_height="74dp"
+            android:layout_marginStart="241dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
             android:onClick="buttonSearchOnclick"
             android:text="search"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,42 +126,7 @@
             android:layout_height="match_parent"
             android:text="Ingredients"
             android:textSize="34sp" />
+
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18">
-
-        <CheckBox
-            android:id="@+id/potatoBtn"
-            style="@android:style/Widget.CompoundButton.CheckBox"
-            android:layout_width="155dp"
-            android:layout_height="79dp"
-            android:checked="false"
-            android:clickable="true"
-            android:fontFamily="sans-serif-smallcaps"
-            android:onClick="buttonPotatoOnclick"
-            android:text="POTATO"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <CheckBox
-            android:id="@+id/cheeseBtn"
-            style="@android:style/Widget.CompoundButton.CheckBox"
-            android:layout_width="155dp"
-            android:layout_height="79dp"
-            android:checked="false"
-            android:fontFamily="sans-serif-smallcaps"
-            android:onClick="buttonCheeseOnclick"
-            android:text="CHEESE"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

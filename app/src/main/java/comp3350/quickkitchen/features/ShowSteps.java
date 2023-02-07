@@ -1,6 +1,9 @@
-package comp3350.quickkitchen.feature_searchbyingredients;
+package comp3350.quickkitchen.features;
 
 import java.util.ArrayList;
+
+import comp3350.quickkitchen.objects.Recipe;
+import comp3350.quickkitchen.persistence.RecipeDatabase;
 
 public class ShowSteps {
 
