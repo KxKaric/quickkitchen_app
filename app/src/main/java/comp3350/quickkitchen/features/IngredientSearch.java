@@ -16,9 +16,6 @@ public class IngredientSearch {
         rawList = new ArrayList<Recipe>();
         filteredList = new ArrayList<Recipe>();
 
-
-
-
         for(int i=0; i<dataBase.getDatabase().size(); i++){
             rawList.add(dataBase.getDatabase().get(i));
         }
@@ -80,6 +77,7 @@ public class IngredientSearch {
                 result.add(filteredList.get(i).getName());
         return result;
     }
+    
     public void showList(){
         System.out.println("The name of the recipes:");
 

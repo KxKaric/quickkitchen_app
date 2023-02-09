@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import comp3350.quickkitchen.objects.Recipe;
 
-public class RecipeDatabase {
+public class RecipeDatabase implements RecipePersistence{
 
     private ArrayList<Recipe> listData;
 
@@ -60,11 +60,11 @@ public class RecipeDatabase {
         helperIngredient4.add("tomato");
         helperIngredient4.add("onion");
         ArrayList<String> helperSteps4 = new ArrayList<>();
-        helperSteps4.add( "test.");
-        helperSteps4.add( "test.");
-        helperSteps4.add( "test.");
-        helperSteps4.add( "test.");
-        helperSteps4.add( "test.");
+        helperSteps4.add( "Mixing flour.");
+        helperSteps4.add( "Add tomato and onion.");
+        helperSteps4.add( "Bake for 5 minutes.");
+        helperSteps4.add( "Sprinkle cheese on top");
+        helperSteps4.add( "Add sauce.");
         Recipe fourth = new Recipe("Pizza", 3, helperIngredient4, 2, 1000, helperSteps4, false, false, false, 1);
         listData.add(fourth);
     }
