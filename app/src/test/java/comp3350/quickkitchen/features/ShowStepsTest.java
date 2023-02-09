@@ -60,9 +60,11 @@ public class ShowStepsTest {
 
         // The standard step list that we use to check
         ArrayList<String> stepForPizza = new ArrayList<>();
-        for(int i = 0; i < 5; i++){ // The steps for making pizza are 5 "test." string
-            stepForPizza.add( "test.");
-        }
+        stepForPizza.add("Mixing flour.");
+        stepForPizza.add("Add tomato and onion.");
+        stepForPizza.add("Bake for 5 minutes.");
+        stepForPizza.add("Sprinkle cheese on top");
+        stepForPizza.add("Add sauce.");
 
         assertTrue( listOfSteps.equals(stepForPizza) );
 

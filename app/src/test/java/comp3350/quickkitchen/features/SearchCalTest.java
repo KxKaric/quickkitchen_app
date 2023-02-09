@@ -55,8 +55,8 @@ public class SearchCalTest {
         assertTrue( "Onion Ring".equals( listOfRecipe3.get(1).getName() ) );
 
         assertTrue( 2 == listOfRecipeString3.size() );
-        assertTrue( "French fries".equals( listOfRecipe3.get(0) ) );
-        assertTrue( "Onion Ring".equals( listOfRecipe3.get(1) ) );
+        assertTrue( "French fries".equals( listOfRecipeString3.get(0) ) );
+        assertTrue( "Onion Ring".equals( listOfRecipeString3.get(1) ) );
 
         // Expect French fries, poutine and onion ring recipes ---------
         ArrayList<Recipe> listOfRecipe4 = searchCal.search(900);
