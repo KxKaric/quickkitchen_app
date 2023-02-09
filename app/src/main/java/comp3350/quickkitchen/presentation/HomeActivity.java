@@ -25,19 +25,19 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         setTitle("Choose your own ingredients");
 
-
+        //assign checkbox
         potatoCheck = findViewById(R.id.potatoBtn);
         cheeseCheck = findViewById(R.id.cheeseBtn);
         flourCheck = findViewById(R.id.flourBtn);
         onionCheck = findViewById(R.id.onionBtn);
         tomatoCheck = findViewById(R.id.tomatoBtn);
-        nothingCheck = findViewById(R.id.nothingBtn); // only for testing
+        //nothingCheck = findViewById(R.id.nothingBtn); // only for debug
 
+        //assign search button
         search = (Button)findViewById(R.id.searchBtn);
-        search.setEnabled(false);
+        search.setEnabled(false); //initially disabled
 
-        result = new ArrayList<>();
-
+        result = new ArrayList<>(); // an arrayList to store the user selected ingredients
 
         potatoCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,10 +47,8 @@ public class HomeActivity extends AppCompatActivity {
                 else
                     result.remove(potatoCheck.getText().toString());
                 checkList();
-
             }
         });
-
         cheeseCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +59,6 @@ public class HomeActivity extends AppCompatActivity {
                 checkList();
             }
         });
-
         onionCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +69,6 @@ public class HomeActivity extends AppCompatActivity {
                 checkList();
             }
         });
-
         flourCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +79,6 @@ public class HomeActivity extends AppCompatActivity {
                 checkList();
             }
         });
-
         tomatoCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,21 +90,26 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        nothingCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(nothingCheck.isChecked())
-                    result.add(nothingCheck.getText().toString());
-                else
-                    result.remove(nothingCheck.getText().toString());
-                checkList();
-            }
-        });
+        //only for debug
+//        nothingCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(nothingCheck.isChecked())
+//                    result.add(nothingCheck.getText().toString());
+//                else
+//                    result.remove(nothingCheck.getText().toString());
+//                checkList();
+//            }
+//        });
 
     }
 
     public ArrayList<String> getResult(){return result;}
 
+    //checkList
+    // : to check whether the user selected at least one ingredients
+    // : if so, search button is enabled.
+    //
     private void checkList(){
         if(result.isEmpty())
             search.setEnabled(false);
@@ -118,9 +118,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void buttonSearchOnclick(View v){
-
-        // Log.d("a",result.toString());
-
         Intent i = new Intent(this, RecipeListActivity.class);
         i.putExtra("result",result);
         startActivity(i);

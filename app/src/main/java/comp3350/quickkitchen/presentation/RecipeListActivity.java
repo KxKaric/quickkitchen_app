@@ -40,18 +40,17 @@ public class RecipeListActivity extends AppCompatActivity {
         try
         {
             ArrayList<String> result = intent.getStringArrayListExtra("result");
+            ingSearch = new IngredientSearch(result);
+            recipeList = ingSearch.getIngredientSearchResult();
 
-            if(!result.isEmpty()) {
-                ingSearch = new IngredientSearch(result);
-                recipeList = ingSearch.getIngredientSearchResult();
-                if(recipeList.isEmpty()){
-                    Toast toast = Toast.makeText(getApplicationContext(),"Can not find any associated recipes, please go back and select another ingredients",Toast.LENGTH_LONG);
-                    toast.show();
-                }
+            //display the messages at the bottom of the UI
+            if(recipeList.isEmpty()){
+                Toast toast = Toast.makeText(getApplicationContext(),"Can not find any associated recipes, please go back and select another ingredients",Toast.LENGTH_LONG);
+                toast.show();
             }
 
-            recipeArrayAdapter = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1, recipeList){
 
+            recipeArrayAdapter = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1, recipeList){
                 @SuppressLint("SetTextI18n")
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) {
@@ -66,36 +65,34 @@ public class RecipeListActivity extends AppCompatActivity {
                     return view;
                 }
             };
+
             final ListView listView = (ListView)findViewById(R.id.recipeList);
             listView.setAdapter(recipeArrayAdapter);
 
             Button nextBtn = (Button)findViewById(R.id.nextBtn);
             nextBtn.setEnabled(false);
-
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-
                     Recipe r = (Recipe) (listView.getItemAtPosition(position));
                     chosenRecipe = r.getName();
 
                     nextBtn.setEnabled(true);
 
-                    Log.e("test","onItemClick: "+position);
-                    Log.e("test","result: "+ingSearch.getStringList());
-                    Log.e("test","result: "+chosenRecipe);
-
+                    //Log.e("test","onItemClick: "+position);
+                    //Log.e("test","result: "+ingSearch.getStringList());
+                    //Log.e("test","result: "+chosenRecipe);
                 }
             });
 
             SearchView searchRecipe = findViewById(R.id.recipeSearch);
             SearchView searchCalories = findViewById(R.id.caloriesSearch);
-            searchRecipe.setInputType(InputType.TYPE_CLASS_TEXT);
-            searchCalories.setInputType(InputType.TYPE_CLASS_NUMBER);
+            searchRecipe.setInputType(InputType.TYPE_CLASS_TEXT); //only allow user to type text
+            searchCalories.setInputType(InputType.TYPE_CLASS_NUMBER); //only allow user to type number
 
 
-
+            // for the function of filtering the recipe name and calories the recipe contained
+            // Alert: Only one of the filters can work at one time
             filteredList = new ArrayList<>();
             searchRecipe.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
@@ -103,19 +100,17 @@ public class RecipeListActivity extends AppCompatActivity {
                     if(!query.isEmpty()){
                         filteredList.clear();
                         for(Recipe recipe : recipeList){
-                            if(recipe.getName().toLowerCase().contains(query.toLowerCase())){
+                            if(recipe.getName().toLowerCase().contains(query.toLowerCase()))
                                 filteredList.add(recipe);
-                            }
                         }
                         updateListView(filteredList);
-                        searchCalories.setQuery("",false);
+                        searchCalories.setQuery("",false); // force to clean the another filter's text.
                     }
                     return true;
                 }
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     //RecipeList.this.recipeArrayAdapter.getFilter().filter(recipe);
-
                     return false;
                 }
             });
@@ -125,12 +120,11 @@ public class RecipeListActivity extends AppCompatActivity {
                     if(!query.isEmpty()){
                         filteredList.clear();
                         for(Recipe recipe : recipeList){
-                            if(recipe.getCalories()<=Integer.parseInt(query)) {
+                            if(recipe.getCalories()<=Integer.parseInt(query))
                                 filteredList.add(recipe);
-                            }
                         }
                         updateListView(filteredList);
-                        searchRecipe.setQuery("",false);
+                        searchRecipe.setQuery("",false); // force to clean the another filter's text.
                     }
                     return false;
                 }
@@ -140,6 +134,7 @@ public class RecipeListActivity extends AppCompatActivity {
                     return false;
                 }
             });
+            // filters end.
 
         }
         catch (final Exception e)
@@ -147,9 +142,11 @@ public class RecipeListActivity extends AppCompatActivity {
             Messages.fatalError(this, e.getMessage());
         }
     }
+
+    //helper method for the filter function above.
+    //to display the recipeList after filtering.
     private void updateListView(List<Recipe> recipeList) {
         recipeArrayAdapter = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1, recipeList){
-
             @SuppressLint("SetTextI18n")
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -166,7 +163,7 @@ public class RecipeListActivity extends AppCompatActivity {
         };
         final ListView listView = (ListView)findViewById(R.id.recipeList);
         listView.setAdapter(recipeArrayAdapter);
-    }
+    }//end updateListView
 
     public void buttonNextOnclick(View v){
         Intent i = new Intent(this, InstructionsActivity.class);

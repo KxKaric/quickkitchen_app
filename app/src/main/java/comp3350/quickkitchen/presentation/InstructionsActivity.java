@@ -15,13 +15,9 @@ import comp3350.quickkitchen.R;
 import comp3350.quickkitchen.features.ShowSteps;
 
 public class InstructionsActivity extends AppCompatActivity {
-    //Test
-
     private ShowSteps showSteps;
     private List<String> stepsList;
-
     private ArrayAdapter<String> stepsArrayAdapter;
-
 
 
     @Override
@@ -41,13 +37,10 @@ public class InstructionsActivity extends AppCompatActivity {
             final ListView listView = (ListView) findViewById(R.id.instrutions_list);
             stepsArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,stepsList);
             listView.setAdapter(stepsArrayAdapter);
-
-            System.out.println("Chosen  = : " + chosen);
+            //System.out.println("Chosen  = : " + chosen);
 
             TextView textView = findViewById(R.id.recipeName);
             textView.setText(chosen);
-
-
         }
         catch (final Exception e)
         {

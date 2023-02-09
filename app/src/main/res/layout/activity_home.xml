@@ -86,17 +86,6 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/nothingBtn"
-                style="@android:style/Widget.CompoundButton.CheckBox"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
-                android:checked="false"
-                android:fontFamily="sans-serif-smallcaps"
-                android:text="NOTHING"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
         </GridLayout>
 
         <Button
