@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import comp3350.quickkitchen.objects.Recipe;
 
-public class RecipeDatabase {
+public class RecipeDatabase implements RecipePersistence{
 
     private ArrayList<Recipe> listData;
 
