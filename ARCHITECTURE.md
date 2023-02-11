@@ -28,6 +28,6 @@ The testing part is mostly for development purposes which helps to increase the 
 
 There is another package which is **objects**. This package holds all the objects that are being used for the application. 
 
-**Visual representation**
+**Overall visual representation**
 
 ![qk_arc](qk_arc.jpg)
