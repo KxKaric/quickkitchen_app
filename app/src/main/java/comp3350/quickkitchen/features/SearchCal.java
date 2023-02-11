@@ -6,15 +6,19 @@ import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.RecipeDatabase;
 
 public class SearchCal {
-
+    //globals
     private RecipeDatabase database;
     ArrayList<Recipe> searchResult = new ArrayList();
 
+    //constructor
     public SearchCal(){
         database= new RecipeDatabase();
         searchResult = new ArrayList<Recipe>();
-
     }
+
+    //retuns list of recipes
+    //takes int as parm
+    //searchs for the desired cal on the db
     public ArrayList<Recipe> search(int calory){
         ArrayList<Recipe> result = new ArrayList();
         for(int i=0; i<database.getDatabase().size();i++){
@@ -24,7 +28,10 @@ public class SearchCal {
         searchResult = result;
         return result;
     }
+
+    //get method
     public ArrayList<Recipe> getResult(){return searchResult;}
+
 
     public ArrayList<String> searchString(int calory){
         ArrayList<String> result1 = new ArrayList();
@@ -35,4 +42,4 @@ public class SearchCal {
         return result1;
     }
 
-}
+}//end class

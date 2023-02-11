@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.RecipeDatabase;
 
-public class IngredientSearch {
+public class IngredientSearch implements IngredientFeature {
+
+    //global variables
     private ArrayList<Recipe>filteredList;
     private RecipeDatabase dataBase;
     private ArrayList <Recipe> rawList;
 
 
+    //constructor
     public IngredientSearch(ArrayList<String> ingredient){
         dataBase = new RecipeDatabase();
         rawList = new ArrayList<Recipe>();
@@ -22,6 +25,8 @@ public class IngredientSearch {
         filterMySearch(ingredient);
     }
 
+    //filters trough the database and finds the desired list of recipes
+    //takes arraylist as parm
     public void filterMySearch(ArrayList<String> ingredient){
 
         for (int i=0; i<rawList.size(); i++){//for all database
@@ -34,6 +39,7 @@ public class IngredientSearch {
         }
     }
 
+    //helper
     //helper method to see if the recipe already added on filtered list
     private boolean hasAll(ArrayList<String> ingredient, ArrayList<String>ingredients){
         boolean decision = true;
@@ -57,6 +63,8 @@ public class IngredientSearch {
         return decision;
     }
 
+    //helper
+    //to see if the item is already there on the list
     private boolean notAddedPreviously(String name){
         boolean decision = true;
         for(int i=0; i<filteredList.size(); i++){
@@ -66,6 +74,7 @@ public class IngredientSearch {
         return decision;
     }
 
+    //get method to access the list
     public ArrayList<Recipe> getIngredientSearchResult(){
         return filteredList;
     }
@@ -77,7 +86,8 @@ public class IngredientSearch {
                 result.add(filteredList.get(i).getName());
         return result;
     }
-    
+
+    //to see the list
     public void showList(){
         System.out.println("The name of the recipes:");
 
@@ -87,4 +97,4 @@ public class IngredientSearch {
     }
 
 
-}
+}//end IngredientSearch class
