@@ -1,4 +1,4 @@
-Quick Kitchen Architecture
+Quick Kitchen - Architecture
 ======================
 
 The overall structure of this application is divided into 4 different parts. These are:
