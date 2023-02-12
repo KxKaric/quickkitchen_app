@@ -3,7 +3,7 @@ package comp3350.quickkitchen.features;
 import java.util.ArrayList;
 
 import comp3350.quickkitchen.objects.Recipe;
-import comp3350.quickkitchen.persistence.RecipeDatabase;
+import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
 
 public class ShowSteps implements StepFeature {
 
@@ -12,7 +12,7 @@ public class ShowSteps implements StepFeature {
 
     //constructor
     public ShowSteps(){
-        RecipeDatabase db = new RecipeDatabase();
+        RecipePersistenceStub db = new RecipePersistenceStub();
         rawDatabase = new ArrayList<Recipe>();
         rawDatabase=db.getDatabase();
     }

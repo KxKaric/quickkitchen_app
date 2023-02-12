@@ -3,19 +3,19 @@ package comp3350.quickkitchen.features;
 import java.util.ArrayList;
 
 import comp3350.quickkitchen.objects.Recipe;
-import comp3350.quickkitchen.persistence.RecipeDatabase;
+import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
 
 public class IngredientSearch implements IngredientFeature {
 
     //global variables
     private ArrayList<Recipe>filteredList;
-    private RecipeDatabase dataBase;
+    private RecipePersistenceStub dataBase;
     private ArrayList <Recipe> rawList;
 
 
     //constructor
     public IngredientSearch(ArrayList<String> ingredient){
-        dataBase = new RecipeDatabase();
+        dataBase = new RecipePersistenceStub();
         rawList = new ArrayList<Recipe>();
         filteredList = new ArrayList<Recipe>();
 

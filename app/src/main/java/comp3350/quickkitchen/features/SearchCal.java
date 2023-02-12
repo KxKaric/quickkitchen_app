@@ -3,16 +3,16 @@ package comp3350.quickkitchen.features;
 import java.util.ArrayList;
 
 import comp3350.quickkitchen.objects.Recipe;
-import comp3350.quickkitchen.persistence.RecipeDatabase;
+import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
 
 public class SearchCal {
     //globals
-    private RecipeDatabase database;
+    private RecipePersistenceStub database;
     ArrayList<Recipe> searchResult = new ArrayList();
 
     //constructor
     public SearchCal(){
-        database= new RecipeDatabase();
+        database= new RecipePersistenceStub();
         searchResult = new ArrayList<Recipe>();
     }
 

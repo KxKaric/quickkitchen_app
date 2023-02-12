@@ -1,5 +1,6 @@
 package comp3350.quickkitchen.persistence;
 import comp3350.quickkitchen.objects.Recipe;
+import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
 
 import java.util.ArrayList;
 import static org.junit.Assert.*;
@@ -11,7 +12,7 @@ public class RecipeDatabaseTest {
     @Test
     public void testRecipeDatabase(){
 
-        RecipeDatabase db = new RecipeDatabase();
+        RecipePersistenceStub db = new RecipePersistenceStub();
         assertNotNull(db);
 
         ArrayList<Recipe> recipeList = db.getDatabase();

@@ -1,14 +1,15 @@
-package comp3350.quickkitchen.persistence;
+package comp3350.quickkitchen.persistence.stubs;
 
 import java.util.ArrayList;
 
 import comp3350.quickkitchen.objects.Recipe;
+import comp3350.quickkitchen.persistence.RecipePersistence;
 
-public class RecipeDatabase implements RecipePersistence{
+public class RecipePersistenceStub implements RecipePersistence {
 
     private ArrayList<Recipe> listData;
 
-    public RecipeDatabase() {
+    public RecipePersistenceStub() {
         initialize(true);
         //showDB();
     }
