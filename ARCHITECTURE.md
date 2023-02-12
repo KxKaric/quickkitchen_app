@@ -30,4 +30,4 @@ There is another package which is **objects**. This package holds all the object
 
 **Overall visual representation**
 
-![qk_arc](qk_arc.jpg)
+![qk_arc](qk_arc.png)
