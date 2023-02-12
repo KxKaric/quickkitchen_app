@@ -106,11 +106,14 @@ public class RecipeListActivity extends AppCompatActivity {
                         updateListView(filteredList);
                         searchCalories.setQuery("",false); // force to clean the another filter's text.
                     }
+
                     return true;
                 }
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     //RecipeList.this.recipeArrayAdapter.getFilter().filter(recipe);
+                    if(newText.equals(""))
+                        updateListView(recipeList);
                     return false;
                 }
             });
@@ -131,6 +134,8 @@ public class RecipeListActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     //RecipeList.this.recipeArrayAdapter.getFilter().filter(recipe);
+                    if(newText.equals(""))
+                        updateListView(recipeList);
                     return false;
                 }
             });
