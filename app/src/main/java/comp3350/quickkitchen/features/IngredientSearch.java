@@ -1,100 +1,51 @@
 package comp3350.quickkitchen.features;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 import comp3350.quickkitchen.objects.Recipe;
-import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
+import comp3350.quickkitchen.persistence.RecipePersistence;
+import comp3350.quickkitchen.application.Services;
 
-public class IngredientSearch implements IngredientFeature {
+public class IngredientSearch {
+// search the recipe by ingredient
+    private RecipePersistence recipePersistence;
+    private List<Recipe> recipeList;
+    private List<String> recipeNameList = new ArrayList<String>();
 
-    //global variables
-    private ArrayList<Recipe>filteredList;
-    private RecipePersistenceStub dataBase;
-    private ArrayList <Recipe> rawList;
 
+    public IngredientSearch(){
+/*
+* the constructor of ingredient search
+* */
+        recipePersistence = Services.getRecipePersistence();
 
-    //constructor
-    public IngredientSearch(ArrayList<String> ingredient){
-        dataBase = new RecipePersistenceStub();
-        rawList = new ArrayList<Recipe>();
-        filteredList = new ArrayList<Recipe>();
-
-        for(int i=0; i<dataBase.getDatabase().size(); i++){
-            rawList.add(dataBase.getDatabase().get(i));
-        }
-        filterMySearch(ingredient);
     }
 
-    //filters trough the database and finds the desired list of recipes
-    //takes arraylist as parm
-    public void filterMySearch(ArrayList<String> ingredient){
+    public List<Recipe> searchRecipeByIngredient(List<String> ingredients){
 
-        for (int i=0; i<rawList.size(); i++){//for all database
-            for (int j=0; j<rawList.get(i).getIngredients().size(); j++){//for a single recipe
-                if(hasAll(ingredient,rawList.get(i).getIngredients())) {
-                    if(notAddedPreviously(rawList.get(i).getName()))
-                        filteredList.add(rawList.get(i));
-                }
-            }
-        }
+        /**
+         * Search db and return a list of Recipe that use the given ingredients
+         */
+       this.recipeList = recipePersistence.getRecipeByIngredient(ingredients);
+       return this.recipeList;
     }
 
-    //helper
-    //helper method to see if the recipe already added on filtered list
-    private boolean hasAll(ArrayList<String> ingredient, ArrayList<String>ingredients){
-        boolean decision = true;
-        Boolean[] cond = new Boolean[ingredient.size()];
-        for(int i=0; i<cond.length; i++){
-            cond[i]=false;
+    public List<String> searchRecipeNameByIngredient(List<String> ingredients){
+
+        /**
+         * Search db and return a list of Recipe name that use the given ingredients
+         */
+
+        searchRecipeByIngredient(ingredients);
+
+        for(int i = 0; i < this.recipeList.size(); i ++){
+            Recipe temp = recipeList.get(i);
+            this.recipeNameList.add( temp.getName() );
         }
 
-        for (int i=0; i<ingredient.size(); i++){
-            for(int j=0; j<ingredients.size(); j++){
-                if(ingredients.get(j).equalsIgnoreCase(ingredient.get(i)))
-                    cond[i]=true;
-            }
-        }
-
-        for(int i=0; i<cond.length; i++){
-            if(cond[i]==false)
-                decision=false;
-        }
-
-        return decision;
+        return this.recipeNameList;
     }
 
-    //helper
-    //to see if the item is already there on the list
-    private boolean notAddedPreviously(String name){
-        boolean decision = true;
-        for(int i=0; i<filteredList.size(); i++){
-            if(filteredList.get(i).getName().equals(name))
-                decision=false;
-        }
-        return decision;
-    }
-
-    //get method to access the list
-    public ArrayList<Recipe> getIngredientSearchResult(){
-        return filteredList;
-    }
-
-    public ArrayList<String> getStringList(){
-        ArrayList<String> result = new ArrayList<>();
-        for(int i=0;i<filteredList.size();i++)
-            if(filteredList.get(i)!=null)
-                result.add(filteredList.get(i).getName());
-        return result;
-    }
-
-    //to see the list
-    public void showList(){
-        System.out.println("The name of the recipes:");
-
-        for (int i=0; i<filteredList.size(); i++){
-            System.out.println(i+1+" "+filteredList.get(i).getName());
-        }
-    }
-
-
-}//end IngredientSearch class
+}

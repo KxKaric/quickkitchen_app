@@ -41,7 +41,8 @@
         <SearchView
             android:id="@+id/recipeSearch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:queryHint="Filter recipe name..."/>
 
         <Button
             android:id="@+id/buttonFilter"
@@ -61,7 +62,8 @@
         <SearchView
             android:id="@+id/caloriesSearch"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:queryHint="Filter calories..."/>
 
     </GridLayout>
 

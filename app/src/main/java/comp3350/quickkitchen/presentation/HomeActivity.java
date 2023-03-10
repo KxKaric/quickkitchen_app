@@ -1,43 +1,55 @@
 package comp3350.quickkitchen.presentation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+
 
 import comp3350.quickkitchen.R;
+import comp3350.quickkitchen.application.Main;
 
+// home page UI
 public class HomeActivity extends AppCompatActivity {
 
-    private CheckBox potatoCheck, cheeseCheck, flourCheck, onionCheck, tomatoCheck,nothingCheck;
+    private CheckBox potatoCheck, cheeseCheck, flourCheck, onionCheck, tomatoCheck, oilCheck, gravyCheck;
     private Button search;
     private ArrayList<String> result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //lay out of home page
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setTitle("Choose your own ingredients");
+        copyDatabaseToDevice();
 
-        //assign checkbox
         potatoCheck = findViewById(R.id.potatoBtn);
         cheeseCheck = findViewById(R.id.cheeseBtn);
         flourCheck = findViewById(R.id.flourBtn);
         onionCheck = findViewById(R.id.onionBtn);
         tomatoCheck = findViewById(R.id.tomatoBtn);
-        //nothingCheck = findViewById(R.id.nothingBtn); // only for debug
+        oilCheck = findViewById(R.id.oilBtn);
+        gravyCheck = findViewById(R.id.gravyBtn);
 
-        //assign search button
         search = (Button)findViewById(R.id.searchBtn);
-        search.setEnabled(false); //initially disabled
+        search.setEnabled(false);
 
-        result = new ArrayList<>(); // an arrayList to store the user selected ingredients
+        result = new ArrayList<>();
 
         potatoCheck.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +59,10 @@ public class HomeActivity extends AppCompatActivity {
                 else
                     result.remove(potatoCheck.getText().toString());
                 checkList();
+
             }
         });
+
         cheeseCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +73,7 @@ public class HomeActivity extends AppCompatActivity {
                 checkList();
             }
         });
+
         onionCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +84,7 @@ public class HomeActivity extends AppCompatActivity {
                 checkList();
             }
         });
+
         flourCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
                 checkList();
             }
         });
+
         tomatoCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,26 +107,29 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        //only for debug
-//        nothingCheck.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(nothingCheck.isChecked())
-//                    result.add(nothingCheck.getText().toString());
-//                else
-//                    result.remove(nothingCheck.getText().toString());
-//                checkList();
-//            }
-//        });
+        oilCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(oilCheck.isChecked())
+                    result.add(oilCheck.getText().toString());
+                else
+                    result.remove(oilCheck.getText().toString());
+                checkList();
+            }
+        });
+
+        gravyCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(gravyCheck.isChecked())
+                    result.add(gravyCheck.getText().toString());
+                else
+                    result.remove(gravyCheck.getText().toString());
+                checkList();
+            }
+        });
 
     }
-
-    public ArrayList<String> getResult(){return result;}
-
-    //checkList
-    // : to check whether the user selected at least one ingredients
-    // : if so, search button is enabled.
-    //
     private void checkList(){
         if(result.isEmpty())
             search.setEnabled(false);
@@ -118,19 +138,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void buttonSearchOnclick(View v){
+
+        // Log.d("a",result.toString());
+
+
         Intent i = new Intent(this, RecipeListActivity.class);
         i.putExtra("result",result);
         startActivity(i);
     }
-
-   /* public String handleText(View v){
-        String input;
-        TextView t = findViewById(R.id.source);
-        input = t.getText().toString();
-
-        return input;
-
-    }*/
 
     @Override
     protected void onDestroy() {
@@ -144,6 +159,57 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
+    private void copyDatabaseToDevice() {
+        final String DB_PATH = "db";
 
+        String[] assetNames;
+        Context context = getApplicationContext();
+        File dataDirectory = context.getDir(DB_PATH, Context.MODE_PRIVATE);
+        AssetManager assetManager = getAssets();
+
+        try {
+
+            assetNames = assetManager.list(DB_PATH);
+            for (int i = 0; i < assetNames.length; i++) {
+                assetNames[i] = DB_PATH + "/" + assetNames[i];
+            }
+
+            copyAssetsToDirectory(assetNames, dataDirectory);
+
+            Main.setDBPathName(dataDirectory.toString() + "/" + Main.getDBPathName());
+
+        } catch (final IOException ioe) {
+            Messages.warning(this, "Unable to access application data: " + ioe.getMessage());
+        }
+    }
+
+
+    public void copyAssetsToDirectory(String[] assets, File directory) throws IOException {
+        AssetManager assetManager = getAssets();
+
+        for (String asset : assets) {
+            String[] components = asset.split("/");
+            String copyPath = directory.toString() + "/" + components[components.length - 1];
+
+            char[] buffer = new char[1024];
+            int count;
+
+            File outFile = new File(copyPath);
+
+            if (!outFile.exists()) {
+                InputStreamReader in = new InputStreamReader(assetManager.open(asset));
+                FileWriter out = new FileWriter(outFile);
+
+                count = in.read(buffer);
+                while (count != -1) {
+                    out.write(buffer, 0, count);
+                    count = in.read(buffer);
+                }
+
+                out.close();
+                in.close();
+            }
+        }
+    }
 
 }

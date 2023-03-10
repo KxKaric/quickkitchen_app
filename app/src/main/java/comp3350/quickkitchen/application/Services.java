@@ -1,18 +1,20 @@
 package comp3350.quickkitchen.application;
 
 import comp3350.quickkitchen.persistence.RecipePersistence;
-import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
+import comp3350.quickkitchen.persistence.hsqldb.RecipePersistenceHSQLDB;
 
 public class Services {
+    /*
+    connect to database
+    * */
 
     private static RecipePersistence recipePersistence = null;
-
-
-    public static synchronized RecipePersistence getRecipePersistence(){
-        if(recipePersistence ==null)
-            recipePersistence = new RecipePersistenceStub();
+    // accessor method.
+    //set the path to db
+    public static synchronized RecipePersistence getRecipePersistence() {
+        if (recipePersistence == null) {
+            recipePersistence = new RecipePersistenceHSQLDB(Main.getDBPathName());
+        }
         return recipePersistence;
     }
 }
-
-

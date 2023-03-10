@@ -22,6 +22,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".presentation.ShoppingListActivity"
+            android:exported="false"
+            android:label="ShoppingList" />
+        <activity
             android:name=".presentation.InstructionsActivity"
             android:exported="false"
             android:label="Instructions" />

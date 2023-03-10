@@ -40,17 +40,18 @@
         android:text="Constructing"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@+id/ShoppingList"
         app:layout_constraintTop_toBottomOf="@+id/instrutions_list" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/ShoppingList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginBottom="20dp"
         android:clickable="false"
-        android:text="Constructing"
+        android:onClick="buttonSLOnclick"
+        android:text="Shopping List"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toStartOf="parent"

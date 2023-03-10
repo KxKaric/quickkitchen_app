@@ -2,6 +2,7 @@ package comp3350.quickkitchen.features;
 import comp3350.quickkitchen.objects.Recipe;
 
 import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -18,10 +19,10 @@ public class IngredientSearchTest {
 
         // Should return both Poutine and French Fries ---------
         searchList1.add("Potato");
-        IngredientSearch ingriSearch1 = new IngredientSearch(searchList1);
+        IngredientSearch ingriSearch1 = new IngredientSearch();
         assertNotNull(ingriSearch1);
 
-        ArrayList <Recipe> searchResult1 = ingriSearch1.getIngredientSearchResult();
+        List <Recipe> searchResult1 = ingriSearch1.searchRecipeByIngredient(searchList1);
         assertNotNull(searchResult1);
 
         assertTrue( 2 == searchResult1.size() );
@@ -32,10 +33,10 @@ public class IngredientSearchTest {
         searchList2.add("Cheese");
         searchList2.add("Potato");
 
-        IngredientSearch ingriSearch2 = new IngredientSearch(searchList2);
+        IngredientSearch ingriSearch2 = new IngredientSearch();
         assertNotNull(ingriSearch2);
 
-        ArrayList <Recipe> searchResult2 = ingriSearch2.getIngredientSearchResult();
+        List <Recipe> searchResult2 = ingriSearch2.searchRecipeByIngredient(searchList2);
         assertNotNull(searchResult2);
 
         assertTrue( 1 == searchResult2.size() );
@@ -45,10 +46,10 @@ public class IngredientSearchTest {
         // Multiple ingredient search. Should return both Poutine and French Fries ---------
         searchList3.add("Potato");
         searchList3.add("Oil");
-        IngredientSearch ingriSearch3 = new IngredientSearch(searchList3);
+        IngredientSearch ingriSearch3 = new IngredientSearch();
         assertNotNull(ingriSearch3);
 
-        ArrayList <Recipe> searchResult3 = ingriSearch3.getIngredientSearchResult();
+        List <Recipe> searchResult3 = ingriSearch3.searchRecipeByIngredient(searchList3);
         assertNotNull(searchResult3);
 
         assertTrue( 2 == searchResult3.size() );
@@ -58,10 +59,10 @@ public class IngredientSearchTest {
         // Should return french fires, poutine and onion ring ---------
         searchList4.add("Oil");
 
-        IngredientSearch ingriSearch4 = new IngredientSearch(searchList4);
+        IngredientSearch ingriSearch4 = new IngredientSearch();
         assertNotNull(ingriSearch4);
 
-        ArrayList <Recipe> searchResult4 = ingriSearch4.getIngredientSearchResult();
+        List <Recipe> searchResult4 = ingriSearch4.searchRecipeByIngredient(searchList4);
         assertNotNull(searchResult4);
 
         assertTrue( 3 == searchResult4.size() );
@@ -74,10 +75,10 @@ public class IngredientSearchTest {
         searchList5.add("Oil");
         searchList5.add("flour");
 
-        IngredientSearch ingriSearch5 = new IngredientSearch(searchList5);
+        IngredientSearch ingriSearch5 = new IngredientSearch();
         assertNotNull(ingriSearch5);
 
-        ArrayList <Recipe> searchResult5 = ingriSearch5.getIngredientSearchResult();
+        List <Recipe> searchResult5 = ingriSearch5.searchRecipeByIngredient(searchList5);
 
         assertNotNull(searchResult5);
         assertTrue( 0 == searchResult5.size() );
@@ -94,19 +95,19 @@ public class IngredientSearchTest {
         searchList2.add("Truffle");
 
         // Should not return any result ---------
-        IngredientSearch ingriSearch1 = new IngredientSearch(searchList1);
+        IngredientSearch ingriSearch1 = new IngredientSearch();
         assertNotNull(ingriSearch1);
 
-        ArrayList <Recipe> searchResult1 = ingriSearch1.getIngredientSearchResult();
+        List <Recipe> searchResult1 = ingriSearch1.searchRecipeByIngredient(searchList1);
 
         assertNotNull(searchResult1);
         assertTrue( 0 == searchResult1.size() );
 
         // Should not return any results ---------
-        IngredientSearch ingriSearch2 = new IngredientSearch(searchList2);
+        IngredientSearch ingriSearch2 = new IngredientSearch();
         assertNotNull(ingriSearch2);
 
-        ArrayList <Recipe> searchResult2 = ingriSearch2.getIngredientSearchResult();
+        List <Recipe> searchResult2 = ingriSearch2.searchRecipeByIngredient(searchList2);
 
         assertNotNull(searchResult2);
         assertTrue( 0 == searchResult2.size() );

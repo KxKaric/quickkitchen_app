@@ -1,20 +1,29 @@
 package comp3350.quickkitchen.objects;
 
 import java.util.ArrayList;
-public class Recipe {
-    private String name; //name of the recipe
-    private int difficulty; //difficulty level of the recipe
-    private ArrayList<String>ingredients; //elements for the recipe
-    private int portion; //How many people
-    private int calories; //Calories on the recipe
-    private ArrayList<String>steps; //Steps to prepare for the recipe;
-    private boolean vegeterian;//if its veg
-    private boolean gultenfree; //if its gultenfree or not
-    private boolean dairyFree; //if it has egg/milk false otherwise true
+import java.util.List;
+import java.util.Arrays;
 
-    private double duration; //time to prepare the meal in hours
-    public Recipe(String rName, int rDifficulty, ArrayList<String>rIngredient, int rPortion, int rCalories, ArrayList<String>rSteps, boolean rVegeterian, boolean rGulenfree, boolean rdairyFree, double rDuration)
+public class Recipe {
+//    private int id; //id of the recipe
+
+    private String id;//recipe id
+    private String name; //name of the recipe
+    private String difficulty; //difficulty level of the recipe
+    private ArrayList<String>ingredients; //elements for the recipe
+    private String portion; //How many people
+    private String calories; //Calories on the recipe
+    private ArrayList<String>steps; //Steps to prepare for the recipe;
+    private String vegeterian;//if its veg
+    private String gultenfree; //if its gultenfree or not
+    private String dairyFree; //if it has egg/milk false otherwise true
+
+    private String duration; //time to prepare the meal in hours
+    public Recipe(String recipeId, String rName, String rDifficulty, ArrayList<String>rIngredient, String rPortion,
+                  String rCalories, ArrayList<String>rSteps, String rVegeterian, String rGulenfree,
+                  String rdairyFree, String rDuration)
     {
+        id=recipeId;
         name=rName;
         difficulty=rDifficulty;
         //assigning value to ingredients
@@ -35,45 +44,36 @@ public class Recipe {
         dairyFree=rdairyFree;
         duration = rDuration;
     }
-
     public String getName(){
         return name;
-    }
+    }//accessor name
 
-    public int getDifficulty(){
+    public String getDifficulty(){
         return difficulty;
-    }
+    }// accessor difficulty
 
-    public ArrayList<String> getIngredients(){
-        return  ingredients;
-    }
-
-    public int getPortion(){
+    public String getPortion(){
         return portion;
-    }
+    }// accessor Portion
 
-    public String getCaloriesInString(){
-        return Integer.toString(calories);
-    }
-
-    public int getCalories(){
+    public String getCalories(){
         return calories;
-    }
+    }//accessor Calories
 
-    public ArrayList<String> getSteps(){
-        return  steps;
-    }
+    public List<String> getIngredients(){
+        List<String> result = this.ingredients;
+        return  result;
+    }// accessor Ingredients
 
-    public boolean isVegeterian(){
-        return vegeterian;
-    }
+    public List<String> getSteps(){
+        List<String> result = this.steps;
 
-    public boolean isGultenfree(){
-        return gultenfree;
-    }
+        return result;
+    }//accessor steps
+    public boolean isVegeterian(){return vegeterian.equals("1");}// helper
 
-    public boolean isDairyFree(){
-        return dairyFree;
-    }
+    public boolean isGultenfree(){return gultenfree.equals("1");}
+
+    public boolean isDairyFree(){return dairyFree.equals("1");}
 
 }

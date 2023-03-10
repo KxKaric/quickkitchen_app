@@ -2,6 +2,7 @@ package comp3350.quickkitchen.features;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class ShowStepsTest {
         assertNotNull(stepList);
 
         // Show the steps to make french fries
-        ArrayList<String> listOfSteps = stepList.showSteps("French fries");
+        List<String> listOfSteps = stepList.showSteps("French fries");
         assertNotNull(listOfSteps);
 
         // The standard step list that we use to check

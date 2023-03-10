@@ -1,18 +1,17 @@
 package comp3350.quickkitchen.persistence;
 import comp3350.quickkitchen.objects.Recipe;
-import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
 
 import java.util.ArrayList;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class RecipeDatabaseTest {
+public class StudPersistenceDBTest {
 
     // Asserting the correctness of the db
     @Test
     public void testRecipeDatabase(){
 
-        RecipePersistenceStub db = new RecipePersistenceStub();
+        StudPersistenceDB db = new StudPersistenceDB();
         assertNotNull(db);
 
         ArrayList<Recipe> recipeList = db.getDatabase();

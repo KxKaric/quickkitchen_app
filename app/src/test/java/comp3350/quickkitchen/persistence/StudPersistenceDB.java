@@ -1,17 +1,17 @@
-package comp3350.quickkitchen.persistence.stubs;
+package comp3350.quickkitchen.persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.RecipePersistence;
 
-public class RecipePersistenceStub implements RecipePersistence {
+public class StudPersistenceDB implements RecipePersistence {
 
     private ArrayList<Recipe> listData;
 
-    public RecipePersistenceStub() {
+    public StudPersistenceDB() {
         initialize(true);
-        //showDB();
     }
 
     public void initialize(boolean command) {
@@ -25,7 +25,7 @@ public class RecipePersistenceStub implements RecipePersistence {
         helperSteps.add( "Wash potates.");
         helperSteps.add( "Cut the potatoes into thin slices.");
         helperSteps.add( "Fry.");
-        Recipe one = new Recipe("French fries", 2, helperIngredient, 1, 300, helperSteps, true, false, true, 0.5);
+        Recipe one = new Recipe("1","French fries", "2", helperIngredient, "1", "300", helperSteps, "1", "0", "1", "0.5");
         listData.add(one);
 
         //second recipe
@@ -40,7 +40,7 @@ public class RecipePersistenceStub implements RecipePersistence {
         helperSteps2.add( "Fry.");
         helperSteps2.add( "Put gravy.");
         helperSteps2.add( "Put cheese.");
-        Recipe two = new Recipe("Poutine", 3, helperIngredient2, 2, 900, helperSteps2, false, false, false, 1);
+        Recipe two = new Recipe("2","Poutine", "3", helperIngredient2, "2", "900", helperSteps2, "0", "0", "0", "1");
         listData.add(two);
 
         //third recipe
@@ -51,7 +51,7 @@ public class RecipePersistenceStub implements RecipePersistence {
         helperSteps3.add( "Wash onions.");
         helperSteps3.add( "Cut the onions into thick slices.");
         helperSteps3.add( "Fry.");
-        Recipe third = new Recipe("Onion Ring", 3, helperIngredient3, 2, 500, helperSteps3, false, false, false, 1);
+        Recipe third = new Recipe("3","Onion Ring", "3", helperIngredient3, "2", "500", helperSteps3, "0", "0", "0", "1");
         listData.add(third);
 
         //fourth recipe
@@ -66,7 +66,7 @@ public class RecipePersistenceStub implements RecipePersistence {
         helperSteps4.add( "Bake for 5 minutes.");
         helperSteps4.add( "Sprinkle cheese on top");
         helperSteps4.add( "Add sauce.");
-        Recipe fourth = new Recipe("Pizza", 3, helperIngredient4, 2, 1000, helperSteps4, false, false, false, 1);
+        Recipe fourth = new Recipe("4","Pizza", "3", helperIngredient4, "2", "1000", helperSteps4, "0", "0", "0", "1");
         listData.add(fourth);
     }
 
@@ -74,18 +74,36 @@ public class RecipePersistenceStub implements RecipePersistence {
         return listData;
     }
 
+    public Recipe getRecipeByName(String name){
+        Recipe result = null;
+        Boolean found = false;
 
-    public void showDB(){
-        for(int i=0; i<listData.size(); i++){
-            Recipe x = listData.get(i);
-            System.out.println("Name:"+x.getName());
-            System.out.println("Difficulty:"+x.getDifficulty());
-            System.out.println("Ingredients:");
-            for(int j=0; j<x.getIngredients().size(); j++){
-                System.out.println(x.getIngredients().get(j));
+        for(int i = 0; i < listData.size() && !found; i++){
+            if( listData.get(i).getName().equalsIgnoreCase(name) ){
+                result = listData.get(i);
+                found = true;
             }
-            System.out.println("Calories:"+x.getCalories());
         }
+
+        return result;
+    }
+
+    public List<Recipe> getRecipeByIngredient(List<String> ingredients){
+        List<Recipe> result = new ArrayList<Recipe>();
+        Boolean found = false;
+
+        for(int i = 0; i < listData.size(); i++){
+
+            List<String> ingreOfThisRecipe = listData.get(i).getIngredients();
+            found = ingreOfThisRecipe.containsAll(ingredients);
+
+            if(found){
+                result.add(listData.get(i));
+                found = false;
+            }
+        }
+
+        return result;
     }
 }
 

@@ -3,7 +3,7 @@ import comp3350.quickkitchen.objects.Recipe;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
-import static org.junit.Assert.*;
+import java.util.List;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ public class SearchCalTest {
         // that has calories index <= the parameter
 
         // Expect nothing, as no recipe in the db has calories <= 5 ---------
-        ArrayList<Recipe> listOfRecipe1 = searchCal.search(5);
-        ArrayList<String> listOfRecipeString1 = searchCal.searchString(5);
+        List<Recipe> listOfRecipe1 = searchCal.searchRecipeByCalLessThan(5);
+        List<String> listOfRecipeString1 = searchCal.searchRecipeByCalLessThanReturnName(5);
         assertNotNull(listOfRecipe1);
         assertNotNull(listOfRecipeString1);
 
@@ -33,8 +33,8 @@ public class SearchCalTest {
         assertTrue( 0 == listOfRecipeString1.size() );
 
         // Expect French fries recipe ---------
-        ArrayList<Recipe> listOfRecipe2 = searchCal.search(350);
-        ArrayList<String> listOfRecipeString2 = searchCal.searchString(350);
+        List<Recipe> listOfRecipe2 = searchCal.searchRecipeByCalLessThan(350);
+        List<String> listOfRecipeString2 = searchCal.searchRecipeByCalLessThanReturnName(350);
         assertNotNull(listOfRecipe2);
         assertNotNull(listOfRecipeString2);
 
@@ -45,8 +45,8 @@ public class SearchCalTest {
         assertTrue( "French fries".equals( listOfRecipeString2.get(0) ) );
 
         // Expect French fries and Onion Ring recipes ---------
-        ArrayList<Recipe> listOfRecipe3 = searchCal.search(600);
-        ArrayList<String> listOfRecipeString3 = searchCal.searchString(600);
+        List<Recipe> listOfRecipe3 = searchCal.searchRecipeByCalLessThan(600);
+        List<String> listOfRecipeString3 = searchCal.searchRecipeByCalLessThanReturnName(600);
         assertNotNull(listOfRecipe3);
         assertNotNull(listOfRecipeString3);
 
@@ -59,8 +59,8 @@ public class SearchCalTest {
         assertTrue( "Onion Ring".equals( listOfRecipeString3.get(1) ) );
 
         // Expect French fries, poutine and onion ring recipes ---------
-        ArrayList<Recipe> listOfRecipe4 = searchCal.search(900);
-        ArrayList<String> listOfRecipeString4 = searchCal.searchString(900);
+        List<Recipe> listOfRecipe4 = searchCal.searchRecipeByCalLessThan(900);
+        List<String> listOfRecipeString4 = searchCal.searchRecipeByCalLessThanReturnName(900);
         assertNotNull(listOfRecipe4);
         assertNotNull(listOfRecipeString4);
 
@@ -75,8 +75,8 @@ public class SearchCalTest {
         assertTrue( "Onion Ring".equals( listOfRecipeString4.get(2) ) );
 
         // Expect alll recipes in the db ---------
-        ArrayList<Recipe> listOfRecipe5 = searchCal.search(1200);
-        ArrayList<String> listOfRecipeString5 = searchCal.searchString(1200);
+        List<Recipe> listOfRecipe5 = searchCal.searchRecipeByCalLessThan(1200);
+        List<String> listOfRecipeString5 = searchCal.searchRecipeByCalLessThanReturnName(1200);
         assertNotNull(listOfRecipe5);
         assertNotNull(listOfRecipeString5);
 

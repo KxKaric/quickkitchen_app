@@ -1,30 +1,26 @@
 package comp3350.quickkitchen.features;
 
-import java.util.ArrayList;
+import java.util.List;
+
 
 import comp3350.quickkitchen.objects.Recipe;
-import comp3350.quickkitchen.persistence.stubs.RecipePersistenceStub;
+import comp3350.quickkitchen.persistence.RecipePersistence;
+import comp3350.quickkitchen.application.Services;
 
-public class ShowSteps implements StepFeature {
+public class ShowSteps {
+// use recipe name to search recipe and show the steps
+    private RecipePersistence recipePersistence;
 
-    //globals
-    ArrayList<Recipe> rawDatabase;
+    private Recipe recipe;//recipe object
 
-    //constructor
     public ShowSteps(){
-        RecipePersistenceStub db = new RecipePersistenceStub();
-        rawDatabase = new ArrayList<Recipe>();
-        rawDatabase=db.getDatabase();
+        recipePersistence = Services.getRecipePersistence();
     }
 
-    //takes string as parm
-    //returns the list of steps for the requested recipe
-    public ArrayList<String> showSteps(String name){
-        ArrayList<String>emptyList = new ArrayList<>();
-        for(int i=0; i<rawDatabase.size(); i++){
-            if(rawDatabase.get(i).getName().equalsIgnoreCase(name))
-                return rawDatabase.get(i).getSteps();
-        }
-        return emptyList;
+    public List<String> showSteps(String recipeName){
+
+        recipe = recipePersistence.getRecipeByName(recipeName);
+        List<String> steps = recipe.getSteps();
+        return steps;
     }
-}//end class
+}
