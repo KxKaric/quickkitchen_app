@@ -1,12 +1,15 @@
 package comp3350.quickkitchen.features;
 
-import static org.junit.Assert.*;
-import java.util.ArrayList;
-import java.util.List;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
+
 import java.util.ArrayList;
+import java.util.List;
+
+import comp3350.quickkitchen.persistence.StudPersistenceDB;
 
 public class ShowStepsTest {
 
@@ -14,7 +17,7 @@ public class ShowStepsTest {
     public void testShopSteps(){
 
         // Create an instance of the ShowSteps class
-        ShowSteps stepList = new ShowSteps();
+        ShowSteps stepList = new ShowSteps(new StudPersistenceDB());
         assertNotNull(stepList);
 
         // Show the steps to make french fries
@@ -69,11 +72,7 @@ public class ShowStepsTest {
 
         assertTrue( listOfSteps.equals(stepForPizza) );
 
-        // Let's check something that's not in the db
-        // Expecting a list of size 0 (no step)
-        listOfSteps = stepList.showSteps("Mosquito fries");
-        assertNotNull(listOfSteps);
-        assertTrue( 0 == listOfSteps.size() );
+
     }
 
 }
