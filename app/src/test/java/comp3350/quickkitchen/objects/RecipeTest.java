@@ -28,14 +28,14 @@ public class RecipeTest {
         stepList1.add( "Put gravy.");
         stepList1.add( "Put cheese.");
 
-        Recipe recipe1 = new Recipe("Poutine", 3, ingredient1, 2, 900, stepList1, false, false, false, 1);
+        Recipe recipe1 = new Recipe("2","Poutine", "3", ingredient1, "2", "900", stepList1, "0", "0", "0", "1");
 
         // Asserting the basic fields
         assertNotNull(recipe1);
         assertTrue( "Poutine".equals(recipe1.getName()) );
-        assertTrue( 3 ==  recipe1.getDifficulty() );
-        assertTrue( 2 == recipe1.getPortion() );
-        assertTrue( 900 == recipe1.getCalories() );
+        assertTrue( "3".equals(recipe1.getDifficulty()) );
+        assertTrue( "2".equals(recipe1.getPortion()) );
+        assertTrue( "900".equalsIgnoreCase(recipe1.getCalories()) );
         assertTrue( !recipe1.isVegeterian() );
         assertTrue( !recipe1.isGultenfree() );
         assertTrue( !recipe1.isDairyFree() );
@@ -62,14 +62,14 @@ public class RecipeTest {
         stepList2.add( "Cut the potatoes into thin slices.");
         stepList2.add( "Fry.");
 
-        Recipe recipe2 = new Recipe("French fries", 2, ingredient2, 1, 300, stepList2, true, false, true, 0.5);
+        Recipe recipe2 = new Recipe("1","French fries", "2", ingredient2, "1", "300", stepList2, "1", "0", "1", "0.5");
 
         // Asserting the basic fields
         assertNotNull(recipe2);
         assertTrue( "French fries".equals(recipe2.getName()) );
-        assertTrue( 2 ==  recipe2.getDifficulty() );
-        assertTrue( 1 == recipe2.getPortion() );
-        assertTrue( 300 == recipe2.getCalories() );
+        assertTrue( "2".equals(recipe2.getDifficulty()) );
+        assertTrue( "1".equals(recipe2.getPortion()) );
+        assertTrue( "300".equals(recipe2.getCalories()) );
         assertTrue( recipe2.isVegeterian() );
         assertTrue( !recipe2.isGultenfree() );
         assertTrue( recipe2.isDairyFree() );
@@ -96,14 +96,14 @@ public class RecipeTest {
         stepList3.add( "Cut the onions into thick slices." );
         stepList3.add( "Fry." );
 
-        Recipe recipe3 = new Recipe("Onion Ring", 3, ingredient3, 2, 500, stepList3, false, false, false, 1);
+        Recipe recipe3 = new Recipe("3","Onion Ring", "3", ingredient3, "2", "500", stepList3, "0", "0", "0", "1");
 
         // Asserting the basic fields
         assertNotNull(recipe3);
         assertTrue( "Onion Ring".equals(recipe3.getName()) );
-        assertTrue( 3 ==  recipe3.getDifficulty() );
-        assertTrue( 2 == recipe3.getPortion() );
-        assertTrue( 500 == recipe3.getCalories() );
+        assertTrue( "3".equals(recipe3.getDifficulty()) );
+        assertTrue( "2".equals(recipe3.getPortion()) );
+        assertTrue( "500".equals(recipe3.getCalories()) );
         assertTrue( !recipe3.isVegeterian() );
         assertTrue( !recipe3.isGultenfree() );
         assertTrue( !recipe3.isDairyFree() );
@@ -132,14 +132,14 @@ public class RecipeTest {
             stepList4.add( "test." );
         }
 
-        Recipe recipe4 = new Recipe("Onion Ring", 3, ingredient4, 2, 1000, stepList4, false, false, false, 1);
+        Recipe recipe4 = new Recipe("4","Pizza", "3", ingredient4, "2", "1000", stepList4, "0", "0", "0", "1");
 
         // Asserting the basic fields
         assertNotNull(recipe4);
         assertTrue( "Onion Ring".equals(recipe4.getName()) );
-        assertTrue( 3 ==  recipe4.getDifficulty() );
-        assertTrue( 2 == recipe4.getPortion() );
-        assertTrue( 1000 == recipe4.getCalories() );
+        assertTrue( "3" ==  recipe4.getDifficulty() );
+        assertTrue( "2".equals(recipe4.getPortion()) );
+        assertTrue( "1000".equals(recipe4.getCalories()) );
         assertTrue( !recipe4.isVegeterian() );
         assertTrue( !recipe4.isGultenfree() );
         assertTrue( !recipe4.isDairyFree() );

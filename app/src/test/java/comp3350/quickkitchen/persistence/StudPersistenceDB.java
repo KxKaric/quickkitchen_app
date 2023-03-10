@@ -8,14 +8,14 @@ import comp3350.quickkitchen.persistence.RecipePersistence;
 
 public class StudPersistenceDB implements RecipePersistence {
 
-    private ArrayList<Recipe> listData;
+    private ArrayList<Recipe> listOfRecipe;
 
     public StudPersistenceDB() {
         initialize(true);
     }
 
     public void initialize(boolean command) {
-        listData = new ArrayList<Recipe>();
+        listOfRecipe = new ArrayList<Recipe>();
 
         //first recipe
         ArrayList<String> helperIngredient = new ArrayList<>();
@@ -26,7 +26,7 @@ public class StudPersistenceDB implements RecipePersistence {
         helperSteps.add( "Cut the potatoes into thin slices.");
         helperSteps.add( "Fry.");
         Recipe one = new Recipe("1","French fries", "2", helperIngredient, "1", "300", helperSteps, "1", "0", "1", "0.5");
-        listData.add(one);
+        listOfRecipe.add(one);
 
         //second recipe
         ArrayList<String> helperIngredient2 = new ArrayList<>();
@@ -41,7 +41,7 @@ public class StudPersistenceDB implements RecipePersistence {
         helperSteps2.add( "Put gravy.");
         helperSteps2.add( "Put cheese.");
         Recipe two = new Recipe("2","Poutine", "3", helperIngredient2, "2", "900", helperSteps2, "0", "0", "0", "1");
-        listData.add(two);
+        listOfRecipe.add(two);
 
         //third recipe
         ArrayList<String> helperIngredient3 = new ArrayList<>();
@@ -52,7 +52,7 @@ public class StudPersistenceDB implements RecipePersistence {
         helperSteps3.add( "Cut the onions into thick slices.");
         helperSteps3.add( "Fry.");
         Recipe third = new Recipe("3","Onion Ring", "3", helperIngredient3, "2", "500", helperSteps3, "0", "0", "0", "1");
-        listData.add(third);
+        listOfRecipe.add(third);
 
         //fourth recipe
         ArrayList<String> helperIngredient4 = new ArrayList<>();
@@ -67,20 +67,20 @@ public class StudPersistenceDB implements RecipePersistence {
         helperSteps4.add( "Sprinkle cheese on top");
         helperSteps4.add( "Add sauce.");
         Recipe fourth = new Recipe("4","Pizza", "3", helperIngredient4, "2", "1000", helperSteps4, "0", "0", "0", "1");
-        listData.add(fourth);
+        listOfRecipe.add(fourth);
     }
 
     public ArrayList<Recipe> getDatabase(){
-        return listData;
+        return listOfRecipe;
     }
 
     public Recipe getRecipeByName(String name){
         Recipe result = null;
         Boolean found = false;
 
-        for(int i = 0; i < listData.size() && !found; i++){
-            if( listData.get(i).getName().equalsIgnoreCase(name) ){
-                result = listData.get(i);
+        for(int i = 0; i < listOfRecipe.size() && !found; i++){
+            if( listOfRecipe.get(i).getName().equalsIgnoreCase(name) ){
+                result = listOfRecipe.get(i);
                 found = true;
             }
         }
@@ -92,13 +92,20 @@ public class StudPersistenceDB implements RecipePersistence {
         List<Recipe> result = new ArrayList<Recipe>();
         Boolean found = false;
 
-        for(int i = 0; i < listData.size(); i++){
+        // For each recipe in our db
+        for(int i = 0; i < listOfRecipe.size(); i++){
 
-            List<String> ingreOfThisRecipe = listData.get(i).getIngredients();
-            found = ingreOfThisRecipe.containsAll(ingredients);
+            List<String> ingreOfThisRecipe = listOfRecipe.get(i).getIngredients();
+
+            // For each ingredient given in the parameter
+            for(int j = 0; j < ingredients.size() && !found; j++){
+                String ingredient = ingredients.get(j);
+                found = ingreOfThisRecipe.contains(ingredient);
+            }
+
 
             if(found){
-                result.add(listData.get(i));
+                result.add(listOfRecipe.get(i));
                 found = false;
             }
         }
