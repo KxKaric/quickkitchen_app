@@ -12,13 +12,15 @@ public class IngredientSearch {
 // search the recipe by ingredient
     private RecipePersistence recipePersistence;
     private List<Recipe> recipeList;
-    private List<String> recipeNameList = new ArrayList<String>();
+    private List<String> recipeNameList ;
 
 
     public IngredientSearch(){
 /*
 * the constructor of ingredient search
 * */
+        recipeList = new ArrayList<>();
+        recipeNameList = new ArrayList<>();
         recipePersistence = Services.getRecipePersistence();
 
     }

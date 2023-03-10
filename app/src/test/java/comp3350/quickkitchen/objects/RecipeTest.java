@@ -136,7 +136,7 @@ public class RecipeTest {
 
         // Asserting the basic fields
         assertNotNull(recipe4);
-        assertTrue( "Onion Ring".equals(recipe4.getName()) );
+        assertTrue( "Pizza".equals(recipe4.getName()) );
         assertTrue( "3" ==  recipe4.getDifficulty() );
         assertTrue( "2".equals(recipe4.getPortion()) );
         assertTrue( "1000".equals(recipe4.getCalories()) );

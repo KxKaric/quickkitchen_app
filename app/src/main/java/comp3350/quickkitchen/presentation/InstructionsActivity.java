@@ -35,7 +35,6 @@ public class InstructionsActivity extends AppCompatActivity {
             chosenRecipe = intent.getStringExtra("chosenRecipe");
             if(chosenRecipe !=null){
                 showSteps = new ShowSteps();
-                stepsList = new ArrayList<>();
                 stepsList=showSteps.showSteps(chosenRecipe);
             }
             final ListView listView = (ListView) findViewById(R.id.instrutions_list);

@@ -1,5 +1,7 @@
 package comp3350.quickkitchen.features;
+import comp3350.quickkitchen.application.Services;
 import comp3350.quickkitchen.objects.Recipe;
+import comp3350.quickkitchen.persistence.RecipePersistence;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,8 +90,8 @@ public class IngredientSearchTest {
     // Test if search return correct list, using ingredient that's not even in the db
     @Test
     public void testIngredientSearch2(){
-        ArrayList searchList1 = new ArrayList<>();
-        ArrayList searchList2 = new ArrayList<>();
+        ArrayList<String> searchList1 = new ArrayList<>();
+        ArrayList<String> searchList2 = new ArrayList<>();
 
         searchList1.add("Dragon Heart");
         searchList2.add("Truffle");
@@ -99,7 +101,6 @@ public class IngredientSearchTest {
         assertNotNull(ingriSearch1);
 
         List <Recipe> searchResult1 = ingriSearch1.searchRecipeByIngredient(searchList1);
-
         assertNotNull(searchResult1);
         assertTrue( 0 == searchResult1.size() );
 

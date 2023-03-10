@@ -33,7 +33,6 @@ public class ShoppingListActivity extends AppCompatActivity {
             chosen = intent.getStringExtra("chosenRecipe");
             if(chosen !=null){
                 SL = new ShoppingList();
-                showList = new ArrayList<>();
                 showList=SL.getShoppingList(chosen);
 
                 TextView textView = findViewById(R.id.SL);
