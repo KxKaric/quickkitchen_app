@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/add_to_bookmark"
+        android:title="Add to bookmark"/>
+</menu>

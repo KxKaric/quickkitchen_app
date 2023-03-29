@@ -114,13 +114,28 @@
             android:id="@+id/searchBtn"
             android:layout_width="150dp"
             android:layout_height="74dp"
-            android:layout_marginStart="241dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginStart="36dp"
             android:onClick="buttonSearchOnclick"
             android:text="search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/bookMarkBtn"
+            app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+            app:layout_constraintVertical_bias="0.95" />
+
+        <Button
+            android:id="@+id/bookMarkBtn"
+            android:layout_width="150dp"
+            android:layout_height="74dp"
+            android:clickable="false"
+            android:onClick="buttonBookMarkOnclick"
+            android:text="BookMark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/searchBtn"
+            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+            app:layout_constraintVertical_bias="0.95" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout

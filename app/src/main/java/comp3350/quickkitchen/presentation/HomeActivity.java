@@ -147,6 +147,11 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void buttonBookMarkOnclick(View v){
+        Intent i = new Intent(this, BookMarkActivity.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

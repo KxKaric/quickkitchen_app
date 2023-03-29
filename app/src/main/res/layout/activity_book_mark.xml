@@ -7,11 +7,11 @@
     android:layout_marginHorizontal="16dp">
 
     <TextView
-        android:id="@+id/recipeName"
+        android:id="@+id/BM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="recipeName"
+        android:text="BookMark"
         android:textColor="#000000"
         android:textSize="30dp"
         android:textStyle="bold"
@@ -20,27 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/instrutions_list"
+        android:id="@+id/bookMark_List"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:choiceMode="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeName" />
+        app:layout_constraintTop_toBottomOf="@+id/BM" />
 
-    <Button
-        android:id="@+id/ShoppingList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:clickable="false"
-        android:onClick="buttonSLOnclick"
-        android:text="Shopping List"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.812"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/instrutions_list"
-        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

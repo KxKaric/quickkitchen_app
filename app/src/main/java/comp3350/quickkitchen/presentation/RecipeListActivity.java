@@ -3,31 +3,25 @@ package comp3350.quickkitchen.presentation;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.PopupWindow;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.quickkitchen.R;
+import comp3350.quickkitchen.features.BookMark;
 import comp3350.quickkitchen.features.IngredientSearch;
 import comp3350.quickkitchen.objects.Recipe;
 
@@ -40,6 +34,8 @@ public class RecipeListActivity extends AppCompatActivity {
     private String chosenRecipe;
     private IngredientSearch ingSearch;
     private ArrayAdapter<Recipe> recipeArrayAdapter;
+    public static BookMark BM = new BookMark();//Bookmark to store the recipes.
+
 // do the search cal and UI
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +66,6 @@ public class RecipeListActivity extends AppCompatActivity {
 
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                     TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
 
                     text1.setText(recipeList.get(position).getName());
                     text2.setText(recipeList.get(position).getCalories()+" calories\t\tvegetarian: "+
@@ -118,6 +113,33 @@ public class RecipeListActivity extends AppCompatActivity {
                 }
             });
 
+            // Long click : add to bookMark
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    PopupMenu popupMenu = new PopupMenu(RecipeListActivity.this, view);
+                    popupMenu.inflate(R.menu.bookmark_add_menu);
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            if (item.getItemId() == R.id.add_to_bookmark) {
+                                // add to bookmark
+                                Recipe selectedRecipe = (Recipe) parent.getItemAtPosition(position);
+                                BM.addToBookMark(selectedRecipe);
+                                Toast.makeText(getApplicationContext(), "Added to bookmark", Toast.LENGTH_SHORT).show();
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
+                    return true;
+                }
+            });
+
+
+            // filters
             SearchView searchRecipe = findViewById(R.id.recipeSearch);
             SearchView searchCalories = findViewById(R.id.caloriesSearch);
             searchRecipe.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -171,6 +193,27 @@ public class RecipeListActivity extends AppCompatActivity {
                     return false;
                 }
             });
+
+            //drop down menu for the portion feature
+            Spinner portionSpinner = findViewById(R.id.portion_spinner);
+            String[] portionOptions = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, portionOptions);
+            portionSpinner.setAdapter(adapter);
+
+            portionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedOption = parent.getItemAtPosition(position).toString();
+                    final int selectedPortion = Integer.parseInt(selectedOption);
+                    Log.e("test", selectedPortion+"" );
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // do nothing
+
+                }
+            });
+            // end of the portion feature
 
         }
         catch (final Exception e)
