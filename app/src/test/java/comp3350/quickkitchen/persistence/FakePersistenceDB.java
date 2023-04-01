@@ -7,11 +7,11 @@ import comp3350.quickkitchen.objects.Recipe;
 
 
 
-public class StudPersistenceDB implements RecipePersistence {
+public class FakePersistenceDB implements RecipePersistence {
 
     private ArrayList<Recipe> listOfRecipe;
 
-    public StudPersistenceDB() {
+    public FakePersistenceDB() {
         initialize(true);
     }
 

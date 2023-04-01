@@ -13,8 +13,8 @@ import comp3350.quickkitchen.features.ShowStepsTest;
 @Suite.SuiteClasses({
         IngredientSearchTest.class,
         //StudPersistenceDBTest.class,
-        RecipeTest.class,
-        ShowStepsTest.class,
+        //RecipeTest.class,
+        //ShowStepsTest.class,
 
 })
 

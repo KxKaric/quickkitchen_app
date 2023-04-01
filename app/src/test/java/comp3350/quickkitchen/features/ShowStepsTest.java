@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.quickkitchen.persistence.StudPersistenceDB;
+import comp3350.quickkitchen.persistence.FakePersistenceDB;
 
 public class ShowStepsTest {
 
@@ -17,7 +17,7 @@ public class ShowStepsTest {
     public void testShopSteps(){
 
         // Create an instance of the ShowSteps class
-        ShowSteps stepList = new ShowSteps(new StudPersistenceDB());
+        ShowSteps stepList = new ShowSteps(new FakePersistenceDB());
         assertNotNull(stepList);
 
         // Show the steps to make french fries

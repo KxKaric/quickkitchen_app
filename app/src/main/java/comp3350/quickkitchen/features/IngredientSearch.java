@@ -31,7 +31,7 @@ public class IngredientSearch {
 
     public IngredientSearch(RecipePersistence recipePersistence){
         /**
-         * Overload constructor that take a persistence db as  its parameter
+         * Overload constructor that inject the dependency
          */
         this.recipePersistence = recipePersistence;
     }
