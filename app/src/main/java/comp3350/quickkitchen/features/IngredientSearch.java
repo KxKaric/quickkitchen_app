@@ -42,6 +42,7 @@ public class IngredientSearch {
          * Search db and return a list of Recipe that use the given ingredients
          */
         this.recipeList = recipePersistence.getRecipeByIngredient(ingredients);
+        // rank method here
         return this.recipeList;
     }
 
