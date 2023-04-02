@@ -17,7 +17,6 @@ import comp3350.quickkitchen.persistence.FakePersistenceDB;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
-import static java.util.List.of;
 
 public class ShoppingListTest {
 
@@ -26,8 +25,8 @@ public class ShoppingListTest {
 
     @Before
     public void setUp(){
-        mockPersistenceDB = mock(RecipePersistence.class);
-        fakePersistenceDB = new FakePersistenceDB();
+        this.mockPersistenceDB = mock(RecipePersistence.class);
+        this.fakePersistenceDB = new FakePersistenceDB();
     }
 
     /**
@@ -40,6 +39,8 @@ public class ShoppingListTest {
                                                                       "onion"));
         List<String> poutineIngre = new ArrayList<String>(Arrays.asList("Potato", "Cheese", "Oil",
                                                                         "Gravy"));
+        List<String> onionRingIngre = new ArrayList<String>(Arrays.asList("Onion", "Oil"));
+        List<String> frenchFryIngre = new ArrayList<String>(Arrays.asList("Potato", "Oil"));
 
         ShoppingList shoppingList = new ShoppingList(fakePersistenceDB);
 
@@ -47,9 +48,13 @@ public class ShoppingListTest {
 
         List<String> result1 = shoppingList.getShoppingList("Pizza");
         List<String> result2 = shoppingList.getShoppingList("Poutine");
+        List<String> result3 = shoppingList.getShoppingList("Onion Ring");
+        List<String> result4 = shoppingList.getShoppingList("French fries");
 
         assertTrue( pizzaIngre.equals(result1) );
         assertTrue( poutineIngre.equals(result2) );
+        assertTrue( onionRingIngre.equals(result3) );
+        assertTrue( frenchFryIngre.equals(result4) );
 
     }
 
@@ -59,13 +64,15 @@ public class ShoppingListTest {
     @Test
     public void integratedTestingWithMock(){
 
+        // Using mock DB
         ShoppingList shoppingList = new ShoppingList(mockPersistenceDB);
         assertNotNull(shoppingList);
         String name = "no name";
 
+        // Create a dummy test Recipe
         ArrayList<String> helperIngredient = new ArrayList<>();
-        helperIngredient.add("no step 1");
-        helperIngredient.add("no step 2");
+        helperIngredient.add("no ingredient 1");
+        helperIngredient.add("no ingredient 2");
 
         ArrayList<String> helperSteps = new ArrayList<>();
 
@@ -73,6 +80,7 @@ public class ShoppingListTest {
                                         "2", "1000", helperSteps, "0",
                                         "0", "0", "1");
 
+        // Making Mock to return the test recipe if getRecipeByName() is called
         when(mockPersistenceDB.getRecipeByName(name)).thenReturn(testRecipe);
 
         List<String> listToShop = shoppingList.getShoppingList(name);

@@ -24,8 +24,8 @@ public class IngredientSearchTest {
 
     @Before
     public void setUp(){
-        mockPersistenceDB = mock(RecipePersistence.class);
-        fakePersistenceDB = new FakePersistenceDB();
+        this.mockPersistenceDB = mock(RecipePersistence.class);
+        this.fakePersistenceDB = new FakePersistenceDB();
     }
 
     /**
@@ -38,9 +38,8 @@ public class IngredientSearchTest {
         ArrayList searchList2 = new ArrayList<>();
         ArrayList searchList3 = new ArrayList<>();
         ArrayList searchList4 = new ArrayList<>();
-        ArrayList searchList5 = new ArrayList<>();
 
-        // Should return both Poutine and French Fries ---------------------------------------
+        // Should return both Poutine and French Fries ---------------------------------------------
         searchList1.add("Potato");
         IngredientSearch ingreSearch1 = new IngredientSearch(new FakePersistenceDB());
         assertNotNull(ingreSearch1);
@@ -89,14 +88,14 @@ public class IngredientSearchTest {
         assertNotNull(ingreSearch4);
 
         List<Recipe> searchResult4= ingreSearch3.searchRecipeByIngredient(searchList4);
-        assertNotNull(searchResult3);
+        assertNotNull(searchResult4);
         assertTrue(4 == searchResult4.size());
         assertTrue("French fries".equals(searchResult4.get(0).getName()));
         assertTrue("Poutine".equals(searchResult4.get(1).getName()));
         assertTrue("Onion Ring".equals(searchResult4.get(2).getName()));
         assertTrue("Pizza".equals(searchResult4.get(3).getName()));
 
-        //-----------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------
     }
 
     /**
@@ -104,22 +103,23 @@ public class IngredientSearchTest {
      */
     @Test
     public void integratedTestingWithMock(){
-        ArrayList searchList1 = new ArrayList<>();
-        ArrayList searchList2 = new ArrayList<>();
+
+        // Using mock DB
+        ArrayList searchList = new ArrayList<>();
 
         IngredientSearch ingreSearch = new IngredientSearch(mockPersistenceDB);
 
         assertNotNull(ingreSearch);
 
-        searchList1.add("Empty");
-        searchList2.add("Not empty");
+        searchList.add("Empty");
 
-        when(mockPersistenceDB.getRecipeByIngredient(searchList1)).thenReturn(searchList1);
+        // Making Mock to return the searchList if getRecipeByIngredient() is called
+        when(mockPersistenceDB.getRecipeByIngredient(searchList)).thenReturn(searchList);
 
-        List<String> searchResult = ingreSearch.searchRecipeByIngredient(searchList1);
+        List<String> searchResult = ingreSearch.searchRecipeByIngredient(searchList);
 
         assertTrue("Empty".equals(searchResult.get(0)));
 
-        verify(mockPersistenceDB).getRecipeByIngredient(searchList1);
+        verify(mockPersistenceDB).getRecipeByIngredient(searchList);
     }
 }

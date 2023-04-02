@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 
 import comp3350.quickkitchen.features.IngredientSearchTest;
 import comp3350.quickkitchen.features.ShoppingListTest;
-//import comp3350.quickkitchen.test.persistence.StudPersistenceDBTest;
+import comp3350.quickkitchen.persistence.FakePersistenceDBTest;
 import comp3350.quickkitchen.objects.RecipeTest;
 import comp3350.quickkitchen.features.ShowStepsTest;
 
@@ -14,9 +14,9 @@ import comp3350.quickkitchen.features.ShowStepsTest;
 @Suite.SuiteClasses({
         IngredientSearchTest.class,
         ShoppingListTest.class,
-        //StudPersistenceDBTest.class,
-        //RecipeTest.class,
-        //ShowStepsTest.class,
+        FakePersistenceDBTest.class,
+        RecipeTest.class,
+        ShowStepsTest.class,
 
 })
 

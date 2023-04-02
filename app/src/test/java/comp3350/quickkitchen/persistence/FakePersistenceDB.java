@@ -46,7 +46,7 @@ public class FakePersistenceDB implements RecipePersistence {
 
         //third recipe
         ArrayList<String> helperIngredient3 = new ArrayList<>();
-        helperIngredient3.add("ONION");
+        helperIngredient3.add("Onion");
         helperIngredient3.add("Oil");
         ArrayList<String> helperSteps3 = new ArrayList<>();
         helperSteps3.add( "Wash onions.");
