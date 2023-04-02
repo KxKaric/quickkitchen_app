@@ -59,7 +59,8 @@ public class ShoppingListTest {
     }
 
     /**
-     Integrated testing using mock dependency
+     * Integrated testing using mock dependency
+     * We are not modifying the DB, so no need to make a copy of the real dependency
      */
     @Test
     public void integratedTestingWithMock(){
