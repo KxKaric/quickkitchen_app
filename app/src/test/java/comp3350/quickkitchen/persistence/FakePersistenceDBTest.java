@@ -133,5 +133,7 @@ public class FakePersistenceDBTest {
         assertTrue("Poutine".equals(searchResult4.get(1).getName()));
         assertTrue("Onion Ring".equals(searchResult4.get(2).getName()));
         assertTrue("Pizza".equals(searchResult4.get(3).getName()));
+
+        System.out.println("End of FakePersistenceDB dependency test.");
     }
 }

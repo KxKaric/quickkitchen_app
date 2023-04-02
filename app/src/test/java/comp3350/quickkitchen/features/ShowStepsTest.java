@@ -103,13 +103,13 @@ public class ShowStepsTest {
         assertNotNull(showStep);
         String name = "no name";
 
+        // Create a dummy test Recipe
         ArrayList<String> helperIngredient = new ArrayList<>();
         ArrayList<String> helperSteps = new ArrayList<>();
-        helperSteps.add("no stet 1");
+        helperSteps.add("no step 1");
         helperSteps.add("no step 2");
 
-        // Create a dummy test Recipe
-        Recipe testRecipe = new Recipe("4",name , "3", helperIngredient,
+        Recipe testRecipe = new Recipe("4", name, "3", helperIngredient,
                 "2", "1000", helperSteps, "0",
                 "0", "0", "1");
 
@@ -121,6 +121,8 @@ public class ShowStepsTest {
         assertTrue(helperSteps.equals(stepToShow));
 
         verify(mockPersistenceDB).getRecipeByName(name);
+
+        System.out.println("End of ShowSteps feature test.");
     }
 
 }

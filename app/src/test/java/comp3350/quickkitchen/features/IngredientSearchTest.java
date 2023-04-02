@@ -121,5 +121,7 @@ public class IngredientSearchTest {
         assertTrue("Empty".equals(searchResult.get(0)));
 
         verify(mockPersistenceDB).getRecipeByIngredient(searchList);
+
+        System.out.println("End of IngredientSearch feature test.");
     }
 }

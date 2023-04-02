@@ -89,5 +89,7 @@ public class ShoppingListTest {
 
         verify(mockPersistenceDB).getRecipeByName(name);
 
+        System.out.println("End of ShoppingList feature test.");
+
     }
 }

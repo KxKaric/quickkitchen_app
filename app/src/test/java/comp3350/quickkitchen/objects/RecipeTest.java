@@ -162,5 +162,7 @@ public class RecipeTest {
         // Asserting if the steps are correctly passed into the class
         // Also a test for getSteps() method
         assertTrue( recipe4.getSteps().equals(stepList4) );
+
+        System.out.println("End of Recipe object test.");
     }
 }
