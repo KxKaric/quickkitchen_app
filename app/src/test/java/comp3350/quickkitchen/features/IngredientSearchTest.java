@@ -28,8 +28,10 @@ public class IngredientSearchTest {
         fakePersistenceDB = new FakePersistenceDB();
     }
 
-    // Test if search return correct list
-    // A double test with a fake DB
+    /**
+     * Unit testing
+     * Test with a Fake dependency (double test)
+     */
     @Test
     public void unitTestingWithFake() {
         ArrayList searchList1 = new ArrayList<>();
@@ -40,10 +42,10 @@ public class IngredientSearchTest {
 
         // Should return both Poutine and French Fries ---------------------------------------
         searchList1.add("Potato");
-        IngredientSearch ingriSearch1 = new IngredientSearch(new FakePersistenceDB());
-        assertNotNull(ingriSearch1);
+        IngredientSearch ingreSearch1 = new IngredientSearch(new FakePersistenceDB());
+        assertNotNull(ingreSearch1);
 
-        List<Recipe> searchResult1 = ingriSearch1.searchRecipeByIngredient(searchList1);
+        List<Recipe> searchResult1 = ingreSearch1.searchRecipeByIngredient(searchList1);
         assertNotNull(searchResult1);
         assertTrue(2 == searchResult1.size());
         assertTrue("French fries".equals(searchResult1.get(0).getName()));
@@ -53,10 +55,10 @@ public class IngredientSearchTest {
 
         // Should return both Poutine and Pizza ----------------------------------------------------
         searchList2.add("Cheese");
-        IngredientSearch ingriSearch2 = new IngredientSearch(new FakePersistenceDB());
-        assertNotNull(ingriSearch2);
+        IngredientSearch ingreSearch2 = new IngredientSearch(new FakePersistenceDB());
+        assertNotNull(ingreSearch2);
 
-        List<Recipe> searchResult2= ingriSearch2.searchRecipeByIngredient(searchList2);
+        List<Recipe> searchResult2= ingreSearch2.searchRecipeByIngredient(searchList2);
         assertNotNull(searchResult2);
         assertTrue(2 == searchResult2.size());
         assertTrue("Poutine".equals(searchResult2.get(0).getName()));
@@ -67,10 +69,10 @@ public class IngredientSearchTest {
         // Should return French Fries, Poutine, and Pizza ------------------------------------------
         searchList3.add("Potato");
         searchList3.add("Cheese");
-        IngredientSearch ingriSearch3 = new IngredientSearch(new FakePersistenceDB());
-        assertNotNull(ingriSearch3);
+        IngredientSearch ingreSearch3 = new IngredientSearch(new FakePersistenceDB());
+        assertNotNull(ingreSearch3);
 
-        List<Recipe> searchResult3= ingriSearch3.searchRecipeByIngredient(searchList3);
+        List<Recipe> searchResult3= ingreSearch3.searchRecipeByIngredient(searchList3);
         assertNotNull(searchResult3);
         assertTrue(3 == searchResult3.size());
         assertTrue("French fries".equals(searchResult3.get(0).getName()));
@@ -83,10 +85,10 @@ public class IngredientSearchTest {
         searchList4.add("Potato");
         searchList4.add("Cheese");
         searchList4.add("Oil");
-        IngredientSearch ingriSearch4 = new IngredientSearch(new FakePersistenceDB());
-        assertNotNull(ingriSearch4);
+        IngredientSearch ingreSearch4 = new IngredientSearch(new FakePersistenceDB());
+        assertNotNull(ingreSearch4);
 
-        List<Recipe> searchResult4= ingriSearch3.searchRecipeByIngredient(searchList4);
+        List<Recipe> searchResult4= ingreSearch3.searchRecipeByIngredient(searchList4);
         assertNotNull(searchResult3);
         assertTrue(4 == searchResult4.size());
         assertTrue("French fries".equals(searchResult4.get(0).getName()));
@@ -97,21 +99,27 @@ public class IngredientSearchTest {
         //-----------------------------------------------------------------------------------------
     }
 
-    public void integratedTestingWithMock() {
+    /**
+        Integrated testing using mock dependency
+     */
+    @Test
+    public void integratedTestingWithMock(){
         ArrayList searchList1 = new ArrayList<>();
         ArrayList searchList2 = new ArrayList<>();
 
-        IngredientSearch ingriSearch = new IngredientSearch(mockPersistenceDB);
+        IngredientSearch ingreSearch = new IngredientSearch(mockPersistenceDB);
+
+        assertNotNull(ingreSearch);
 
         searchList1.add("Empty");
+        searchList2.add("Not empty");
 
         when(mockPersistenceDB.getRecipeByIngredient(searchList1)).thenReturn(searchList1);
 
-        List<String> searchResult= new ArrayList<String>();
-        searchResult = ingriSearch.searchRecipeByIngredient(searchList1);
+        List<String> searchResult = ingreSearch.searchRecipeByIngredient(searchList1);
 
         assertTrue("Empty".equals(searchResult.get(0)));
 
-        verify(mockPersistenceDB).getRecipeByName("Name");
+        verify(mockPersistenceDB).getRecipeByIngredient(searchList1);
     }
 }
