@@ -31,7 +31,7 @@ public class IngredientSearch {
 
     public IngredientSearch(RecipePersistence recipePersistence){
         /**
-         * Overload constructor that take a persistence db as  its parameter
+         * Overload constructor that inject the dependency
          */
         this.recipePersistence = recipePersistence;
     }
@@ -41,7 +41,9 @@ public class IngredientSearch {
         /**
          * Search db and return a list of Recipe that use the given ingredients
          */
-        this.recipeList = recipePersistence.getRecipeByIngredient(ingredients);
+        //sorted list based on rank
+        this.recipeList=recipePersistence.sortByRank(recipePersistence.getRecipeByIngredient(ingredients));
+        //this.recipeList = recipePersistence.getRecipeByIngredient(ingredients);
         // rank method here
         return this.recipeList;
     }

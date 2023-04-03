@@ -2,22 +2,41 @@ package comp3350.quickkitchen.features;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+import org.junit.Before;
 import org.junit.Test;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-import comp3350.quickkitchen.persistence.StudPersistenceDB;
+import comp3350.quickkitchen.objects.Recipe;
+import comp3350.quickkitchen.persistence.FakePersistenceDB;
+import comp3350.quickkitchen.persistence.RecipePersistence;
 
 public class ShowStepsTest {
 
+    private RecipePersistence mockPersistenceDB;    // For integrated testing
+    private RecipePersistence fakePersistenceDB;    // For unit testing
+
+    @Before
+    public void setUp(){
+        this.mockPersistenceDB = mock(RecipePersistence.class);
+        this.fakePersistenceDB = new FakePersistenceDB();
+    }
+
+    /**
+     * Unit testing
+     * Test with a Fake dependency (double test)
+     */
     @Test
     public void testShopSteps(){
 
         // Create an instance of the ShowSteps class
-        ShowSteps stepList = new ShowSteps(new StudPersistenceDB());
+        ShowSteps stepList = new ShowSteps(fakePersistenceDB);
         assertNotNull(stepList);
 
         // Show the steps to make french fries
@@ -71,8 +90,40 @@ public class ShowStepsTest {
         stepForPizza.add("Add sauce.");
 
         assertTrue( listOfSteps.equals(stepForPizza) );
+    }
 
+    /**
+     * Integrated testing using mock dependency
+     * We are not modifying the DB, so no need to make a copy of the real dependency
+     */
+    @Test
+    public void integratedTestingWithMock(){
 
+        // Using mock DB
+        ShowSteps showStep = new ShowSteps(mockPersistenceDB);
+        assertNotNull(showStep);
+        String name = "no name";
+
+        // Create a dummy test Recipe
+        ArrayList<String> helperIngredient = new ArrayList<>();
+        ArrayList<String> helperSteps = new ArrayList<>();
+        helperSteps.add("no step 1");
+        helperSteps.add("no step 2");
+
+        Recipe testRecipe = new Recipe("4", name, "3", helperIngredient,
+                "2", "1000", helperSteps, "0",
+                "0", "0", "1");
+
+        // Making Mock to return the test recipe if getRecipeByName() is called
+        when(mockPersistenceDB.getRecipeByName(name)).thenReturn(testRecipe);
+
+        List<String> stepToShow = showStep.showSteps(name);
+
+        assertTrue(helperSteps.equals(stepToShow));
+
+        verify(mockPersistenceDB).getRecipeByName(name);
+
+        System.out.println("End of ShowSteps feature test.");
     }
 
 }
