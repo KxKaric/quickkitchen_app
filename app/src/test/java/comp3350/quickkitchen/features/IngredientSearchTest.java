@@ -125,4 +125,9 @@ public class IngredientSearchTest {
 
         System.out.println("End of IngredientSearch feature test.");
     }
+
+    @Test
+    public void integratedTesting(){
+
+    }
 }
