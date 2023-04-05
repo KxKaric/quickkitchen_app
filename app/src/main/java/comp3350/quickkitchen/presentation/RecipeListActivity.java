@@ -93,8 +93,9 @@ public class RecipeListActivity extends AppCompatActivity {
             listView.setAdapter(recipeArrayAdapter);
 
             Button nextBtn = (Button)findViewById(R.id.nextBtn);
+            Button bookMarkBtn =(Button)findViewById(R.id.bookMark);
             nextBtn.setEnabled(false);
-
+            bookMarkBtn.setEnabled(false);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -104,6 +105,17 @@ public class RecipeListActivity extends AppCompatActivity {
                     chosenRecipe = r.getName();
 
                     nextBtn.setEnabled(true);
+                    bookMarkBtn.setEnabled(true);
+
+                    //add to bookmark (1)
+                    bookMarkBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            BM.addToBookMark(r);
+
+                            Toast.makeText(getApplicationContext(), "Added to bookmark", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                     // Create a new PopupMenu object
                     PopupMenu popup = new PopupMenu(RecipeListActivity.this, view);
@@ -120,7 +132,7 @@ public class RecipeListActivity extends AppCompatActivity {
                 }
             });
 
-            // Long click : add to bookMark
+            // Long click : add to bookMark (2)
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -144,6 +156,7 @@ public class RecipeListActivity extends AppCompatActivity {
                     return true;
                 }
             });
+            // End of bookmark function **********************
 
 
             // filters function **********************
