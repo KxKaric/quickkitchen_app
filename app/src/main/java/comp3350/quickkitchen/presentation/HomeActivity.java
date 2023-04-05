@@ -46,90 +46,125 @@ public class HomeActivity extends AppCompatActivity {
         oilCheck = findViewById(R.id.oilBtn);
         gravyCheck = findViewById(R.id.gravyBtn);
 
+        // Set up the result list and search button
+        result = new ArrayList<>();
         search = (Button)findViewById(R.id.searchBtn);
         search.setEnabled(false);
 
-        result = new ArrayList<>();
-
-        potatoCheck.setOnClickListener(new View.OnClickListener() {
+        // Set a single OnClickListener for all the checkboxes
+        View.OnClickListener checkboxListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(potatoCheck.isChecked())
-                    result.add(potatoCheck.getText().toString());
-                else
-                    result.remove(potatoCheck.getText().toString());
-                checkList();
+                // Get the tag associated with the checkbox that was clicked
+                String checkIngs = view.getTag().toString();
 
-            }
-        });
-
-        cheeseCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(cheeseCheck.isChecked())
-                    result.add(cheeseCheck.getText().toString());
+                // If the checkbox is checked, add it to the result list
+                if (((CheckBox) view).isChecked())
+                    result.add(checkIngs);
                 else
-                    result.remove(cheeseCheck.getText().toString());
+                    result.remove(checkIngs);
+
+                // Update the search button
                 checkList();
             }
-        });
+        };
 
-        onionCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(onionCheck.isChecked())
-                    result.add(onionCheck.getText().toString());
-                else
-                    result.remove(onionCheck.getText().toString());
-                checkList();
-            }
-        });
-
-        flourCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(flourCheck.isChecked())
-                    result.add(flourCheck.getText().toString());
-                else
-                    result.remove(flourCheck.getText().toString());
-                checkList();
-            }
-        });
-
-        tomatoCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(tomatoCheck.isChecked())
-                    result.add(tomatoCheck.getText().toString());
-                else
-                    result.remove(tomatoCheck.getText().toString());
-                checkList();
-            }
-        });
-
-        oilCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(oilCheck.isChecked())
-                    result.add(oilCheck.getText().toString());
-                else
-                    result.remove(oilCheck.getText().toString());
-                checkList();
-            }
-        });
-
-        gravyCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(gravyCheck.isChecked())
-                    result.add(gravyCheck.getText().toString());
-                else
-                    result.remove(gravyCheck.getText().toString());
-                checkList();
-            }
-        });
-
+        // Set the OnClickListener for all the checkboxes
+        potatoCheck.setOnClickListener(checkboxListener);
+        potatoCheck.setTag(potatoCheck.getText().toString());
+        cheeseCheck.setOnClickListener(checkboxListener);
+        cheeseCheck.setTag(cheeseCheck.getText().toString());
+        flourCheck.setOnClickListener(checkboxListener);
+        flourCheck.setTag(flourCheck.getText().toString());
+        onionCheck.setOnClickListener(checkboxListener);
+        onionCheck.setTag(onionCheck.getText().toString());
+        tomatoCheck.setOnClickListener(checkboxListener);
+        tomatoCheck.setTag(tomatoCheck.getText().toString());
+        oilCheck.setOnClickListener(checkboxListener);
+        oilCheck.setTag(oilCheck.getText().toString());
+        gravyCheck.setOnClickListener(checkboxListener);
+        gravyCheck.setTag(gravyCheck.getText().toString());
     }
+
+//        potatoCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(potatoCheck.isChecked())
+//                    result.add(potatoCheck.getText().toString());
+//                else
+//                    result.remove(potatoCheck.getText().toString());
+//                checkList();
+//
+//            }
+//        });
+//
+//        cheeseCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(cheeseCheck.isChecked())
+//                    result.add(cheeseCheck.getText().toString());
+//                else
+//                    result.remove(cheeseCheck.getText().toString());
+//                checkList();
+//            }
+//        });
+//
+//        onionCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(onionCheck.isChecked())
+//                    result.add(onionCheck.getText().toString());
+//                else
+//                    result.remove(onionCheck.getText().toString());
+//                checkList();
+//            }
+//        });
+//
+//        flourCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(flourCheck.isChecked())
+//                    result.add(flourCheck.getText().toString());
+//                else
+//                    result.remove(flourCheck.getText().toString());
+//                checkList();
+//            }
+//        });
+//
+//        tomatoCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(tomatoCheck.isChecked())
+//                    result.add(tomatoCheck.getText().toString());
+//                else
+//                    result.remove(tomatoCheck.getText().toString());
+//                checkList();
+//            }
+//        });
+//
+//        oilCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(oilCheck.isChecked())
+//                    result.add(oilCheck.getText().toString());
+//                else
+//                    result.remove(oilCheck.getText().toString());
+//                checkList();
+//            }
+//        });
+//
+//        gravyCheck.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(gravyCheck.isChecked())
+//                    result.add(gravyCheck.getText().toString());
+//                else
+//                    result.remove(gravyCheck.getText().toString());
+//                checkList();
+//            }
+//        });
+
+ //   }
     private void checkList(){
         if(result.isEmpty())
             search.setEnabled(false);
@@ -138,10 +173,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void buttonSearchOnclick(View v){
-
-        // Log.d("a",result.toString());
-
-
         Intent i = new Intent(this, RecipeListActivity.class);
         i.putExtra("result",result);
         startActivity(i);

@@ -32,11 +32,25 @@ public class Portion {
          */
         recipe = recipePersistence.getRecipeByName(recipeName);//required recipe
         ingredients=recipe.getIngredients();
-        for( int i=0;i< ingredients.size();i++){
-            ingredients.set(i,portion+ingredients.get(i));
+        int tem = portion;
+
+        for( int i=0;i< ingredients.size();i++) {
+            if (Character.isDigit(ingredients.get(i).charAt(0))) {
+                portion = Character.getNumericValue(ingredients.get(i).charAt(0)) * portion;
+                String originalString = ingredients.get(i);
+                String numStr = Integer.toString(portion);
+                String newString = numStr + originalString.substring(1);
+                ingredients.set(i, newString);
+            }
+            else if(Character.isDigit(ingredients.get(i).charAt(1))){
+                tem = Character.getNumericValue(ingredients.get(i).charAt(1)) *tem;
+                String originalString = ingredients.get(i);
+                String numStr = Integer.toString(tem);
+                String newString = numStr + originalString.substring(2);
+                ingredients.set(i, newString);
+            }
         }
         return ingredients;
-
     }
 
 
