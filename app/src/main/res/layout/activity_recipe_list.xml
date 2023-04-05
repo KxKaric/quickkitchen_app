@@ -75,6 +75,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="4dp"
             android:layout_toStartOf="@+id/nextBtn"
+            android:onClick="buttonSTBookMarkOnclick"
             android:text="Save to BookMark" />
 
         <TextView

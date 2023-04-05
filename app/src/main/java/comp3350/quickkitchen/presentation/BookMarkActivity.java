@@ -65,9 +65,6 @@ public class BookMarkActivity extends AppCompatActivity {
                     Recipe r = (Recipe) (listView.getItemAtPosition(position));
                     removeBtn.setEnabled(true);
 
-                    // Set the background color for chosen recipe
-                    view.setBackgroundColor(getResources().getColor(R.color.teal_200));
-
                     // delete from bookMark (1)
                     removeBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -76,6 +73,10 @@ public class BookMarkActivity extends AppCompatActivity {
                             recipeList.remove(r);
                             bMArrayAdapter.notifyDataSetChanged();
                             Toast.makeText(getApplicationContext(), "Deleted from bookmark", Toast.LENGTH_SHORT).show();
+
+                            //disable button is the bookmark is empty
+                            if(recipeList.isEmpty())
+                                removeBtn.setEnabled(false);
                         }
                     });
 

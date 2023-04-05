@@ -10,7 +10,6 @@
         android:id="@+id/removeFromBM"
         android:layout_width="127dp"
         android:layout_height="60dp"
-        android:layout_toStartOf="@+id/nextBtn"
         android:text="REMOVE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +35,8 @@
         android:id="@+id/bookMark_List"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:choiceMode="none"
+        android:choiceMode="singleChoice"
+        android:focusableInTouchMode="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BM" />

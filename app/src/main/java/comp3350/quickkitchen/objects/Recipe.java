@@ -12,10 +12,10 @@ public class Recipe {
     private String id;//recipe id
     private String name; //name of the recipe
     private String difficulty; //difficulty level of the recipe
-    private ArrayList<String>ingredients; //elements for the recipe
+    private List<String>ingredients; //elements for the recipe
     private String portion; //How many people
     private String calories; //Calories on the recipe
-    private ArrayList<String>steps; //Steps to prepare for the recipe;
+    private List<String>steps; //Steps to prepare for the recipe;
     private String vegeterian;//if its veg
     private String gultenfree; //if its gultenfree or not
     private String dairyFree; //if it has egg/milk false otherwise true
@@ -74,6 +74,10 @@ public class Recipe {
         List<String> result = this.ingredients;
         return  result;
     }// accessor Ingredients
+
+    public void setIngredients(List<String> list){
+        this.ingredients = list;
+    }// setter Ingredients
 
     public List<String> getSteps(){
         List<String> result = this.steps;

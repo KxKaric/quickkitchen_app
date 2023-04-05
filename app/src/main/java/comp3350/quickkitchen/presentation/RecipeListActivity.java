@@ -74,9 +74,6 @@ public class RecipeListActivity extends AppCompatActivity {
                     final int selectedPortion = Integer.parseInt(selectedOption);
 
                     portionNum = selectedPortion; // portionNum input
-                    Log.e("test", selectedPortion+"" );
-
-
                 }
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
@@ -141,7 +138,7 @@ public class RecipeListActivity extends AppCompatActivity {
                     bookMarkBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            BM.addToBookMark(r);
+                            BM.addToBookMark(r,portionNum);
 
                             Toast.makeText(getApplicationContext(), "Added to bookmark", Toast.LENGTH_SHORT).show();
                         }
@@ -156,7 +153,7 @@ public class RecipeListActivity extends AppCompatActivity {
                     // Find the MenuItem for the description and set its title to the recipe's description
                     MenuItem descriptionMenuItem = popup.getMenu().findItem(R.id.menu_description);
                     descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ chose.ingredientsWithPortion(r.getName(),portionNum));
-                    //descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ r.getIngredients());
+
                     // Show the PopupMenu
                     popup.show();
                 }
@@ -175,7 +172,7 @@ public class RecipeListActivity extends AppCompatActivity {
                             if (item.getItemId() == R.id.add_to_bookmark) {
                                 // add to bookmark
                                 Recipe selectedRecipe = (Recipe) parent.getItemAtPosition(position);
-                                BM.addToBookMark(selectedRecipe);
+                                BM.addToBookMark(selectedRecipe,portionNum);
                                 Toast.makeText(getApplicationContext(), "Added to bookmark", Toast.LENGTH_SHORT).show();
                                 return true;
                             }

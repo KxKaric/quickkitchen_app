@@ -7,19 +7,23 @@ import comp3350.quickkitchen.objects.Recipe;
 
 public class BookMark {
     private List<Recipe> recipeList;
+    private Portion portionClass;
 
     public BookMark(){
         this.recipeList = new ArrayList<>();
+        this.portionClass = new Portion();
     }
 
-    public List<Recipe> addToBookMark(Recipe newRecipe){
+    public List<Recipe> addToBookMark(Recipe newRecipe, int portion){
 
         /**
-         * Add the chosen recipe to the bookmark.
+         * Add the chosen recipe to the bookmark with no duplicates.
          */
-        if(newRecipe!=null)
+        if(newRecipe!=null&&!recipeList.contains(newRecipe)) {
+            //updates the ingredients list with user's input portionNum
+            newRecipe.setIngredients(portionClass.ingredientsWithPortion(newRecipe.getName(), portion));
             recipeList.add(newRecipe);
-
+        }
         return this.recipeList;
     }
 
