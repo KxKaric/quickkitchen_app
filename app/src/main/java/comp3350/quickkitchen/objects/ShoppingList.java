@@ -1,4 +1,4 @@
-package comp3350.quickkitchen.features;
+package comp3350.quickkitchen.objects;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ public class ShoppingList {
     private List<String> ingredients;
     private Recipe recipe;
     private RecipePersistence recipePersistence;
+
 
     public ShoppingList(){
         /**
@@ -26,7 +27,7 @@ public class ShoppingList {
         this.recipePersistence = recipePersistence;
     }
 
-    public List<String> getShoppingList(String recipeName){
+    public List<String> getShoppingList(String recipeName,String portion){
         /**
          * Constructor that take a persistence db as  its parameter
          */

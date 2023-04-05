@@ -1,4 +1,4 @@
-package comp3350.quickkitchen.features;
+package comp3350.quickkitchen.objects;
 
 import static org.junit.Assert.*;
 

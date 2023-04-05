@@ -9,12 +9,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.quickkitchen.R;
 import comp3350.quickkitchen.features.ShowSteps;
-import comp3350.quickkitchen.features.ShoppingList;//sample
+import comp3350.quickkitchen.objects.ShoppingList;//sample
 
 public class InstructionsActivity extends AppCompatActivity {
     //instruction page UI
@@ -43,7 +42,7 @@ public class InstructionsActivity extends AppCompatActivity {
             listView.setAdapter(stepsArrayAdapter);
 
             System.out.println("Chosen  = : " + chosenRecipe);
-            System.out.println(obj.getShoppingList("Pizza"));
+            System.out.println(obj.getShoppingList("Pizza","1"));
 
             System.out.println("Chosen  = : " + chosenRecipe);
 

@@ -11,13 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 import comp3350.quickkitchen.R;
-import comp3350.quickkitchen.features.ShoppingList;
+import comp3350.quickkitchen.objects.ShoppingList;
+import comp3350.quickkitchen.features.Portion;
+
+
 
 
 public class ShoppingListActivity extends AppCompatActivity {
     //Test
 
-    private ShoppingList SL;
+    private Portion SL;
     private List<String> showList;
     private ArrayAdapter<String> sLArrayAdapter;
 
@@ -31,12 +34,11 @@ public class ShoppingListActivity extends AppCompatActivity {
         try {
             chosen = intent.getStringExtra("chosenRecipe");
             if(chosen !=null){
-                SL = new ShoppingList();
-                showList=SL.getShoppingList(chosen);
+                SL = new Portion();
+                showList=SL.portionImplementation(chosen,"5");
 
                 TextView textView = findViewById(R.id.SL);
                 textView.setText("Shopping list for "+chosen);
-
                 sLArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,showList);
                 final ListView listView = (ListView) findViewById(R.id.shopping_list);
                 listView.setAdapter(sLArrayAdapter);

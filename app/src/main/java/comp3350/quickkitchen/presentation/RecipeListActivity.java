@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import comp3350.quickkitchen.R;
 import comp3350.quickkitchen.features.BookMark;
 import comp3350.quickkitchen.features.IngredientSearch;
+import comp3350.quickkitchen.features.Portion;
 import comp3350.quickkitchen.objects.Recipe;
 
 import java.util.ArrayList;
@@ -88,6 +89,7 @@ public class RecipeListActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                     Recipe r = (Recipe) (listView.getItemAtPosition(position));
+                    Portion chose = new Portion();
                     if(position!=-1)
                         selectRecipeAtPosition(position);
                     chosenRecipe = r.getName();
@@ -106,7 +108,7 @@ public class RecipeListActivity extends AppCompatActivity {
 
                     // Find the MenuItem for the description and set its title to the recipe's description
                     MenuItem descriptionMenuItem = popup.getMenu().findItem(R.id.menu_description);
-                    descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ r.getIngredients());
+                    descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ chose.portionImplementation(r.getName(),"4"));
 
                     // Show the PopupMenu
                     popup.show();
