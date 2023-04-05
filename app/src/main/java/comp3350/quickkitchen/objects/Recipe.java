@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
+import comp3350.quickkitchen.features.Portion;
+
 public class Recipe {
 //    private int id; //id of the recipe
 
@@ -20,6 +22,7 @@ public class Recipe {
 
     private String duration; //time to prepare the meal in hours
     private String ranking; //time to prepare the meal in hours
+    private Portion myPortion;
     public Recipe(String recipeId, String rName, String rDifficulty, ArrayList<String>rIngredient, String rPortion,
                   String rCalories, ArrayList<String>rSteps, String rVegeterian, String rGulenfree,
                   String rdairyFree, String rDuration, String rRanking)
@@ -45,6 +48,8 @@ public class Recipe {
         gultenfree=rGulenfree;
         dairyFree=rdairyFree;
         duration = rDuration;
+
+        myPortion = new Portion();
     }
     public String getName(){
         return name;

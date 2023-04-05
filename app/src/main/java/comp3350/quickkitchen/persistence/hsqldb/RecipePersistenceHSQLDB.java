@@ -50,9 +50,9 @@ public class RecipePersistenceHSQLDB implements RecipePersistence {
         String vegetarian = rs.getString("vegetarian");
         String glutenFree = rs.getString("glutenFree");
         String diaryFree = rs.getString("diaryFree");
-
         String duration = rs.getString("duration");
-        return new Recipe(recipeID, recipeName, difficulty, ingredientList, portion, calories, stepList,vegetarian, glutenFree, diaryFree, duration);
+        String rank = rs.getString("rank");
+        return new Recipe(recipeID, recipeName, difficulty, ingredientList, portion, calories, stepList,vegetarian, glutenFree, diaryFree, duration, rank);
     }
 
     @Override
@@ -115,6 +115,11 @@ public class RecipePersistenceHSQLDB implements RecipePersistence {
         } catch (final SQLException e) {
             throw new PersistenceException(e);
         }
+    }
+
+    @Override
+    public List<Recipe> sortByRank(List<Recipe> data) {
+        return null;
     }
 
 }

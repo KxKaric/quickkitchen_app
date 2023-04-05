@@ -33,9 +33,10 @@ public class ShoppingListActivity extends AppCompatActivity {
         String chosen;
         try {
             chosen = intent.getStringExtra("chosenRecipe");
+            int portionNum = intent.getIntExtra("portionNum",1);
             if(chosen !=null){
                 SL = new Portion();
-                showList=SL.portionImplementation(chosen,"5");
+                showList=SL.ingredientsWithPortion(chosen,portionNum);
 
                 TextView textView = findViewById(R.id.SL);
                 textView.setText("Shopping list for "+chosen);

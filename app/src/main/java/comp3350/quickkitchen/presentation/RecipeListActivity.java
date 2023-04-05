@@ -37,6 +37,7 @@ public class RecipeListActivity extends AppCompatActivity {
     private IngredientSearch ingSearch;
     private ArrayAdapter<Recipe> recipeArrayAdapter;
     private Recipe recommendedRecipe; //Ranking System
+    private int portionNum; //Portion feature
     public static BookMark BM = new BookMark();//Bookmark to store the recipes.
 
 // do the search cal and UI
@@ -59,6 +60,33 @@ public class RecipeListActivity extends AppCompatActivity {
                     toast.show();
                 }
             }
+
+            //drop down menu for the portion feature
+            Spinner portionSpinner = findViewById(R.id.portion_spinner);
+            String[] portionOptions = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, portionOptions);
+            portionSpinner.setAdapter(adapter);
+
+            portionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedOption = parent.getItemAtPosition(position).toString();
+                    final int selectedPortion = Integer.parseInt(selectedOption);
+
+                    portionNum = selectedPortion; // portionNum input
+                    Log.e("test", selectedPortion+"" );
+
+
+                }
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // do nothing
+
+                }
+            });
+            // end of the portion feature*********************
+
+
             recipeArrayAdapter = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1, recipeList){
 
                 @SuppressLint("SetTextI18n")
@@ -127,8 +155,8 @@ public class RecipeListActivity extends AppCompatActivity {
 
                     // Find the MenuItem for the description and set its title to the recipe's description
                     MenuItem descriptionMenuItem = popup.getMenu().findItem(R.id.menu_description);
-                    descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ chose.portionImplementation(r.getName(),"4"));
-
+                    descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ chose.ingredientsWithPortion(r.getName(),portionNum));
+                    //descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ r.getIngredients());
                     // Show the PopupMenu
                     popup.show();
                 }
@@ -211,27 +239,6 @@ public class RecipeListActivity extends AppCompatActivity {
             });
             // End of filters function **********************
 
-            //drop down menu for the portion feature
-            Spinner portionSpinner = findViewById(R.id.portion_spinner);
-            String[] portionOptions = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, portionOptions);
-            portionSpinner.setAdapter(adapter);
-
-            portionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedOption = parent.getItemAtPosition(position).toString();
-                    final int selectedPortion = Integer.parseInt(selectedOption);
-                    Log.e("test", selectedPortion+"" );
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // do nothing
-
-                }
-            });
-            // end of the portion feature
-
         }
         catch (final Exception e)
         {
@@ -287,6 +294,8 @@ public class RecipeListActivity extends AppCompatActivity {
     public void buttonNextOnclick(View v){
         Intent i = new Intent(this, InstructionsActivity.class);
         i.putExtra("chosenRecipe",chosenRecipe);
+        i.putExtra("portionNum", portionNum);
+
         startActivity(i);
     }
 

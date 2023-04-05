@@ -21,6 +21,7 @@ public class InstructionsActivity extends AppCompatActivity {
     private ShowSteps showSteps;
     private List<String> stepsList;
 
+    private int portionNum;
     private String chosenRecipe;
     private ArrayAdapter<String> stepsArrayAdapter;
     private ShoppingList obj;
@@ -31,7 +32,9 @@ public class InstructionsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         try {
-            chosenRecipe = intent.getStringExtra("chosenRecipe");
+            chosenRecipe = intent.getStringExtra("chosenRecipe"); // pass to shoppingList Activity
+            portionNum = intent.getIntExtra("portionNum",1); // pass to shoppingList Activity
+
             if(chosenRecipe !=null){
                 showSteps = new ShowSteps();
                 stepsList=showSteps.showSteps(chosenRecipe);
@@ -59,6 +62,7 @@ public class InstructionsActivity extends AppCompatActivity {
     public void buttonSLOnclick(View v){
         Intent i = new Intent(this, ShoppingListActivity.class);
         i.putExtra("chosenRecipe",chosenRecipe);
+        i.putExtra("portionNum",portionNum);
         startActivity(i);
     }
 }

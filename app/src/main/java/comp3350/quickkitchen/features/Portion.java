@@ -26,7 +26,7 @@ public class Portion {
         this.recipePersistence = recipePersistence;
     }
 
-    public List<String> portionImplementation(String recipeName,String portion){
+    public List<String> ingredientsWithPortion(String recipeName,int portion){
         /**
          * the portion for shop list and ingredient list.
          */
