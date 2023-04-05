@@ -27,7 +27,7 @@ public class ShoppingList {
         this.recipePersistence = recipePersistence;
     }
 
-    public List<String> getShoppingList(String recipeName,String portion){
+    public List<String> getShoppingList(String recipeName){
         /**
          * Constructor that take a persistence db as  its parameter
          */

@@ -44,12 +44,6 @@ public class InstructionsActivity extends AppCompatActivity {
             obj = new ShoppingList();
             listView.setAdapter(stepsArrayAdapter);
 
-            System.out.println("Chosen  = : " + chosenRecipe);
-            System.out.println(obj.getShoppingList("Pizza","1"));
-
-            System.out.println("Chosen  = : " + chosenRecipe);
-
-
             TextView textView = findViewById(R.id.recipeName);
             textView.setText(chosenRecipe);
         }
