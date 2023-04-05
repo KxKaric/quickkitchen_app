@@ -2,19 +2,12 @@ package comp3350.quickkitchen.features;
 
 import static org.junit.Assert.*;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.quickkitchen.objects.Recipe;
-import comp3350.quickkitchen.persistence.RecipePersistence;
-import comp3350.quickkitchen.persistence.FakePersistenceDB;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
 
 public class BookMarkTest {
 
