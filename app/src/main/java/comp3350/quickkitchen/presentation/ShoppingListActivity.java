@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 import comp3350.quickkitchen.R;
-import comp3350.quickkitchen.objects.ShoppingList;
 import comp3350.quickkitchen.features.Portion;
 
 
