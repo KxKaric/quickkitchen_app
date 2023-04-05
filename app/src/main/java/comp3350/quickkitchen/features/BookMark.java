@@ -19,8 +19,10 @@ public class BookMark {
          */
         if(newRecipe!=null)
             recipeList.add(newRecipe);
+
         return this.recipeList;
     }
+
     public void delRecipeFromBookMark(Recipe r){
         /**
          * delete the chosen recipe from the bookmark.

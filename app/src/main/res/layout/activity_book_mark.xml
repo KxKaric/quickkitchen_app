@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     android:layout_marginHorizontal="16dp">
 
+    <Button
+        android:id="@+id/removeFromBM"
+        android:layout_width="127dp"
+        android:layout_height="60dp"
+        android:layout_toStartOf="@+id/nextBtn"
+        android:text="REMOVE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.936"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BM"
+        app:layout_constraintVertical_bias="0.944" />
+
     <TextView
         android:id="@+id/BM"
         android:layout_width="wrap_content"

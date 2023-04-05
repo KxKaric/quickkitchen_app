@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 public class RecipeTest {
 
+    /**
+     * Unit testing for Recipe class.
+     */
     @Test
     public void testRecipe(){
 
@@ -28,7 +31,9 @@ public class RecipeTest {
         stepList1.add( "Put gravy.");
         stepList1.add( "Put cheese.");
 
-        Recipe recipe1 = new Recipe("2","Poutine", "3", ingredient1, "2", "900", stepList1, "0", "0", "0", "1");
+        Recipe recipe1 = new Recipe("2","Poutine", "3", ingredient1,
+                                    "2", "900", stepList1, "0",
+                                    "0", "0", "1");
 
         // Asserting the basic fields
         assertNotNull(recipe1);
@@ -62,7 +67,9 @@ public class RecipeTest {
         stepList2.add( "Cut the potatoes into thin slices.");
         stepList2.add( "Fry.");
 
-        Recipe recipe2 = new Recipe("1","French fries", "2", ingredient2, "1", "300", stepList2, "1", "0", "1", "0.5");
+        Recipe recipe2 = new Recipe("1","French fries", "2", ingredient2,
+                                    "1", "300", stepList2, "1",
+                                    "0", "1", "0.5");
 
         // Asserting the basic fields
         assertNotNull(recipe2);
@@ -96,7 +103,9 @@ public class RecipeTest {
         stepList3.add( "Cut the onions into thick slices." );
         stepList3.add( "Fry." );
 
-        Recipe recipe3 = new Recipe("3","Onion Ring", "3", ingredient3, "2", "500", stepList3, "0", "0", "0", "1");
+        Recipe recipe3 = new Recipe("3","Onion Ring", "3", ingredient3,
+                                    "2", "500", stepList3, "0",
+                                    "0", "0", "1");
 
         // Asserting the basic fields
         assertNotNull(recipe3);
@@ -132,7 +141,9 @@ public class RecipeTest {
             stepList4.add( "test." );
         }
 
-        Recipe recipe4 = new Recipe("4","Pizza", "3", ingredient4, "2", "1000", stepList4, "0", "0", "0", "1");
+        Recipe recipe4 = new Recipe("4","Pizza", "3", ingredient4, "2",
+                                    "1000", stepList4, "0", "0",
+                                    "0", "1");
 
         // Asserting the basic fields
         assertNotNull(recipe4);
@@ -151,5 +162,7 @@ public class RecipeTest {
         // Asserting if the steps are correctly passed into the class
         // Also a test for getSteps() method
         assertTrue( recipe4.getSteps().equals(stepList4) );
+
+        System.out.println("End of Recipe object test.");
     }
 }

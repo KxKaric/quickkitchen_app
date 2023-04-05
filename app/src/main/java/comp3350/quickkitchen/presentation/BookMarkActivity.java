@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -22,9 +23,7 @@ import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.R;
 
 public class BookMarkActivity extends AppCompatActivity {
-
     private ArrayAdapter<Recipe> bMArrayAdapter;
-
     private List<Recipe> recipeList ;
 
     @Override
@@ -33,6 +32,7 @@ public class BookMarkActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_mark);
         recipeList = RecipeListActivity.BM.getBookMarkList();
         try {
+            // show book mark list
             bMArrayAdapter = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1, recipeList){
                 @SuppressLint("SetTextI18n")
                 @Override
@@ -55,12 +55,29 @@ public class BookMarkActivity extends AppCompatActivity {
             final ListView listView = (ListView)findViewById(R.id.bookMark_List);
             listView.setAdapter(bMArrayAdapter);
 
-            // show ingredients list
+
+            Button removeBtn =(Button)findViewById(R.id.removeFromBM);
+            removeBtn.setEnabled(false);
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
                     Recipe r = (Recipe) (listView.getItemAtPosition(position));
+                    removeBtn.setEnabled(true);
+
+                    // Set the background color for chosen recipe
+                    view.setBackgroundColor(getResources().getColor(R.color.teal_200));
+
+                    // delete from bookMark (1)
+                    removeBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            RecipeListActivity.BM.delRecipeFromBookMark(r);
+                            recipeList.remove(r);
+                            bMArrayAdapter.notifyDataSetChanged();
+                            Toast.makeText(getApplicationContext(), "Deleted from bookmark", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                     // Create a new PopupMenu object
                     PopupMenu popup = new PopupMenu(BookMarkActivity.this, view);
@@ -77,7 +94,7 @@ public class BookMarkActivity extends AppCompatActivity {
                 }
             });
 
-            // Long click : delete from bookMark
+            // Long click : delete from bookMark (2)
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {

@@ -22,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import comp3350.quickkitchen.R;
 import comp3350.quickkitchen.features.BookMark;
+import comp3350.quickkitchen.features.Filter;
 import comp3350.quickkitchen.features.IngredientSearch;
 import comp3350.quickkitchen.features.Portion;
 import comp3350.quickkitchen.objects.Recipe;
@@ -35,6 +36,7 @@ public class RecipeListActivity extends AppCompatActivity {
     private String chosenRecipe;
     private IngredientSearch ingSearch;
     private ArrayAdapter<Recipe> recipeArrayAdapter;
+    private Recipe recommendedRecipe; //Ranking System
     public static BookMark BM = new BookMark();//Bookmark to store the recipes.
 
 // do the search cal and UI
@@ -57,7 +59,6 @@ public class RecipeListActivity extends AppCompatActivity {
                     toast.show();
                 }
             }
-
             recipeArrayAdapter = new ArrayAdapter<Recipe>(this, android.R.layout.simple_list_item_activated_2,android.R.id.text1, recipeList){
 
                 @SuppressLint("SetTextI18n")
@@ -67,6 +68,17 @@ public class RecipeListActivity extends AppCompatActivity {
 
                     TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                     TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+                    // Recommend only the first item
+                    if (position == 0) {
+                        recommendedRecipe = recipeList.get(position); //record the recommended recipe
+                        TextView highlightsText = new TextView(getContext());
+                        highlightsText.setText("*Recommended*");
+                        highlightsText.setTextSize(20);
+                        highlightsText.setTextColor(getResources().getColor(R.color.red));
+                        highlightsText.setPadding(800,0,0,0);
+                        ((ViewGroup)view).addView(highlightsText);
+                    }
 
                     text1.setText(recipeList.get(position).getName());
                     text2.setText(recipeList.get(position).getCalories()+" calories\t\tvegetarian: "+
@@ -82,12 +94,12 @@ public class RecipeListActivity extends AppCompatActivity {
             listView.setAdapter(recipeArrayAdapter);
 
             Button nextBtn = (Button)findViewById(R.id.nextBtn);
+            Button bookMarkBtn =(Button)findViewById(R.id.bookMark);
             nextBtn.setEnabled(false);
-
+            bookMarkBtn.setEnabled(false);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
                     Recipe r = (Recipe) (listView.getItemAtPosition(position));
                     Portion chose = new Portion();
                     if(position!=-1)
@@ -95,10 +107,17 @@ public class RecipeListActivity extends AppCompatActivity {
                     chosenRecipe = r.getName();
 
                     nextBtn.setEnabled(true);
+                    bookMarkBtn.setEnabled(true);
 
-                    //Log.e("test","onItemClick: "+position);
-                    //Log.e("test","result: "+ingSearch.searchRecipeNameByIngredient(result));
-                    //Log.e("test","result: "+chosenRecipe);
+                    //add to bookmark (1)
+                    bookMarkBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            BM.addToBookMark(r);
+
+                            Toast.makeText(getApplicationContext(), "Added to bookmark", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                     // Create a new PopupMenu object
                     PopupMenu popup = new PopupMenu(RecipeListActivity.this, view);
@@ -115,7 +134,7 @@ public class RecipeListActivity extends AppCompatActivity {
                 }
             });
 
-            // Long click : add to bookMark
+            // Long click : add to bookMark (2)
             listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -139,26 +158,24 @@ public class RecipeListActivity extends AppCompatActivity {
                     return true;
                 }
             });
+            // End of bookmark function **********************
 
 
-            // filters
+            // filters function **********************
             SearchView searchRecipe = findViewById(R.id.recipeSearch);
             SearchView searchCalories = findViewById(R.id.caloriesSearch);
             searchRecipe.setInputType(InputType.TYPE_CLASS_TEXT);
             searchCalories.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-
             filteredList = new ArrayList<>();
+            Filter myFilter = new Filter(recipeList);
             searchRecipe.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     if(!query.isEmpty()){
                         filteredList.clear();
-                        for(Recipe recipe : recipeList){
-                            if(recipe.getName().toLowerCase().contains(query.toLowerCase())){
-                                filteredList.add(recipe);
-                            }
-                        }
+                        filteredList= myFilter.filterName(query);
+
                         updateListView(filteredList);
                         searchCalories.setQuery("",false); // force to clean the another filter's text.
                     }
@@ -166,8 +183,8 @@ public class RecipeListActivity extends AppCompatActivity {
                 }
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    //RecipeList.this.recipeArrayAdapter.getFilter().filter(recipe);
-                    if(newText.equals(""))
+                    // If user deletes the input, show the original list
+                    if (newText.isEmpty()&&searchCalories.getQuery().toString().isEmpty())
                         updateListView(recipeList);
                     return false;
                 }
@@ -177,24 +194,22 @@ public class RecipeListActivity extends AppCompatActivity {
                 public boolean onQueryTextSubmit(String query) {
                     if(!query.isEmpty()){
                         filteredList.clear();
-                        for(Recipe recipe : recipeList){
-                            if(Integer.parseInt(recipe.getCalories()) <=Integer.parseInt(query)) {
-                                filteredList.add(recipe);
-                            }
-                        }
+                        filteredList= myFilter.filterCalories(query);
+
                         updateListView(filteredList);
                         searchRecipe.setQuery("",false); // force to clean the another filter's text.
                     }
-                    return false;
+                    return true;
                 }
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    //RecipeList.this.recipeArrayAdapter.getFilter().filter(recipe);
-                    if(newText.equals(""))
+                    // If user deletes the input, show the original list
+                    if (newText.isEmpty()&&searchRecipe.getQuery().toString().isEmpty())
                         updateListView(recipeList);
                     return false;
                 }
             });
+            // End of filters function **********************
 
             //drop down menu for the portion feature
             Spinner portionSpinner = findViewById(R.id.portion_spinner);
@@ -234,8 +249,23 @@ public class RecipeListActivity extends AppCompatActivity {
                 TextView text1 = (TextView) view.findViewById(android.R.id.text1);
                 TextView text2 = (TextView) view.findViewById(android.R.id.text2);
 
+                // To make sure the recommended recipe doesn't change
+                // when using the filter.
+                if (position == 0 && recommendedRecipe==recipeList.get(position)) {
+                    TextView highlightsText = new TextView(getContext());
+                    highlightsText.setText("*Recommended*");
+                    highlightsText.setTextSize(20);
+                    highlightsText.setTextColor(getResources().getColor(R.color.red));
+                    highlightsText.setPadding(800,0,0,0);
+                    ((ViewGroup)view).addView(highlightsText);
+                }
+
                 text1.setText(recipeList.get(position).getName());
-                text2.setText(recipeList.get(position).getCalories()+" calories");
+                text2.setText(recipeList.get(position).getCalories()+" calories\t\tvegetarian: "+
+                        recipeList.get(position).isVegeterian()+"\t\tglutenFree: "+
+                        recipeList.get(position).isGultenfree()+"\t\tdiaryFree: "+
+                        recipeList.get(position).isDairyFree() +"\t\tdifficulty: "+
+                        recipeList.get(position).getDifficulty());
 
                 return view;
             }

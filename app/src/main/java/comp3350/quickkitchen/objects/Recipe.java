@@ -19,13 +19,15 @@ public class Recipe {
     private String dairyFree; //if it has egg/milk false otherwise true
 
     private String duration; //time to prepare the meal in hours
+    private String ranking; //time to prepare the meal in hours
     public Recipe(String recipeId, String rName, String rDifficulty, ArrayList<String>rIngredient, String rPortion,
                   String rCalories, ArrayList<String>rSteps, String rVegeterian, String rGulenfree,
-                  String rdairyFree, String rDuration)
+                  String rdairyFree, String rDuration, String rRanking)
     {
         id=recipeId;
         name=rName;
         difficulty=rDifficulty;
+        ranking=rRanking;
         //assigning value to ingredients
         ingredients=new ArrayList<String>();
         for(int i=0; i<rIngredient.size(); i++){
@@ -59,6 +61,9 @@ public class Recipe {
     public String getCalories(){
         return calories;
     }//accessor Calories
+    public int getRanking(){
+        return Integer.parseInt(ranking);
+    }//accessor ranking
 
     public List<String> getIngredients(){
         List<String> result = this.ingredients;
