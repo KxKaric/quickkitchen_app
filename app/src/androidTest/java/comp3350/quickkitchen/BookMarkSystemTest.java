@@ -39,7 +39,7 @@ public class BookMarkSystemTest {
     }
 
     @Test
-    public void deleteFromBookMarkSystemTest() {
+    public void addAndDeleteFromBookMarkSystemTest() {
         // -- Home page --
         onView(withId(R.id.oilBtn)).perform(click());
         onView(withId(R.id.searchBtn)).perform(click());

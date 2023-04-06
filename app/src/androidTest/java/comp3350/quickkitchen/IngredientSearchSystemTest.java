@@ -24,7 +24,17 @@ public class IngredientSearchSystemTest {
     public ActivityScenarioRule<HomeActivity> activityRule = new ActivityScenarioRule<>(HomeActivity.class);
 
     @Test
-    public void ingredientsSearchSystemTest() {
+    public void singleIngredientSearchSystemTest() {
+        // -- Home page --
+        onView(withId(R.id.oilBtn)).perform(click());
+        onView(withId(R.id.searchBtn)).perform(click());
+
+        // -- Recipe page --
+        onView(withId(R.id.recipeList)).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void multipleIngredientSearchSystemTest() {
         // -- Home page --
         onView(withId(R.id.oilBtn)).perform(click());
         onView(withId(R.id.tomatoBtn)).perform(click());
