@@ -12,6 +12,7 @@ public class IngredientSearch {
     private RecipePersistence recipePersistence;
     private List<Recipe> recipeList;
     private List<String> recipeNameList ;
+    private rank rankObj;
 
 
     public IngredientSearch(){
@@ -25,6 +26,7 @@ public class IngredientSearch {
          * */
         recipeList = new ArrayList<>();
         recipeNameList = new ArrayList<>();
+        rankObj=new rank();
 
         recipePersistence = Services.getRecipePersistence();
     }
@@ -43,7 +45,7 @@ public class IngredientSearch {
          */
         //sorted list based on rank
         //this.recipeList=recipePersistence.sortByRank(recipePersistence.getRecipeByIngredient(ingredients));
-        this.recipeList = recipePersistence.getRecipeByIngredient(ingredients);
+        this.recipeList = rankObj.sortByRank(recipePersistence.getRecipeByIngredient(ingredients));
         // rank method here
         return this.recipeList;
     }

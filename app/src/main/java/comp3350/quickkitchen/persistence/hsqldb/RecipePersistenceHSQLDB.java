@@ -114,9 +114,4 @@ public class RecipePersistenceHSQLDB implements RecipePersistence {
         }
     }
 
-    @Override
-    public List<Recipe> sortByRank(List<Recipe> data) {
-        return null;
-    }
-
 }

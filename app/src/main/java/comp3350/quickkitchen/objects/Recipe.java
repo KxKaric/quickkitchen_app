@@ -27,6 +27,7 @@ public class Recipe {
                   String rdairyFree, String rDuration, String rRanking)
     {
         id=recipeId;
+
         name=rName;
         difficulty=rDifficulty;
         ranking=rRanking;

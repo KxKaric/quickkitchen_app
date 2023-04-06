@@ -8,5 +8,4 @@ public interface RecipePersistence {
     Recipe getRecipeByName(String name);
 
     List<Recipe> getRecipeByIngredient(List<String> ingredients);
-    List<Recipe> sortByRank(List<Recipe>data);
 }
