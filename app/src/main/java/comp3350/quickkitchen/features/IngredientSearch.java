@@ -44,7 +44,6 @@ public class IngredientSearch {
          * Search db and return a list of Recipe that use the given ingredients
          */
         //sorted list based on rank
-        //this.recipeList=recipePersistence.sortByRank(recipePersistence.getRecipeByIngredient(ingredients));
         this.recipeList = rankObj.sortByRank(recipePersistence.getRecipeByIngredient(ingredients));
         // rank method here
         return this.recipeList;
