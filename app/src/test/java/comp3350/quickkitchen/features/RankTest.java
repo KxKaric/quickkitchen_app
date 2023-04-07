@@ -14,7 +14,7 @@ public class RankTest {
 
     /**
      * Unit testing
-     * No need for dependency. Just the unit testing itself
+     * No need for integrated testing (This feature never interact with dependency). Just the unit testing itself
      */
     @Test
     public void testRank(){

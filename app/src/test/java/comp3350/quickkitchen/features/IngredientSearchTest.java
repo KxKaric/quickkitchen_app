@@ -28,6 +28,7 @@ public class IngredientSearchTest {
     private RecipePersistence fakePersistenceDB;    // For unit testing
 
     private File tempDB;
+    private IngredientSearch ingreSearch;
 
     @Before
     public void setUp() throws IOException{
@@ -35,6 +36,7 @@ public class IngredientSearchTest {
         this.fakePersistenceDB = new FakePersistenceDB();
         this.tempDB = TestUtils.copyDB();
         final RecipePersistence realPersistanceDB = new RecipePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        this.ingreSearch = new IngredientSearch(realPersistanceDB);
     }
 
     /**
@@ -43,6 +45,7 @@ public class IngredientSearchTest {
      */
     @Test
     public void unitTestingWithFake() {
+
         ArrayList searchList1 = new ArrayList<>();
         ArrayList searchList2 = new ArrayList<>();
         ArrayList searchList3 = new ArrayList<>();
@@ -50,7 +53,7 @@ public class IngredientSearchTest {
 
         // Should return both Poutine and French Fries ---------------------------------------------
         searchList1.add("Potato");
-        IngredientSearch ingreSearch1 = new IngredientSearch(new FakePersistenceDB());
+        IngredientSearch ingreSearch1 = new IngredientSearch(fakePersistenceDB);
         assertNotNull(ingreSearch1);
 
         List<Recipe> searchResult1 = ingreSearch1.searchRecipeByIngredient(searchList1);
@@ -105,6 +108,8 @@ public class IngredientSearchTest {
         assertTrue("Pizza".equals(searchResult4.get(3).getName()));
 
         //------------------------------------------------------------------------------------------
+
+
     }
 
     /**
@@ -147,12 +152,36 @@ public class IngredientSearchTest {
         assertTrue(result.equals(searchResult));
 
         verify(mockPersistenceDB).getRecipeByIngredient(searchList);
+    }
+
+    @Test
+    public void integratedTesting1(){
+
+        ArrayList searchList1 = new ArrayList<>(Arrays.asList("Potato"));
+        List<Recipe> searchResult = ingreSearch.searchRecipeByIngredient(searchList1);
+        assertNotNull(searchResult);
+        assertTrue(2 == searchResult.size());
+
+        assertTrue("Poutine".equals(searchResult.get(0).getName()));
+        assertTrue("French fries".equals(searchResult.get(1).getName()));
+
+        //------------------------------------------------------------------------------------------
+
+    }
+    @Test
+    public void integratedTesting2(){
+
+        ArrayList searchList1 = new ArrayList<>(Arrays.asList("Cheese"));
+        List<Recipe> searchResult = ingreSearch.searchRecipeByIngredient(searchList1);
+        assertNotNull(searchResult);
+        assertTrue(2 == searchResult.size());
+
+        assertTrue("Poutine".equals(searchResult.get(0).getName()));
+        assertTrue("Pizza".equals(searchResult.get(1).getName()));
+
+        //------------------------------------------------------------------------------------------
 
         System.out.println("End of IngredientSearch feature test.");
     }
 
-    @Test
-    public void integratedTesting(){
-
-    }
 }

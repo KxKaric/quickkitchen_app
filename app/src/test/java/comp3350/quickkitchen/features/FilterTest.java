@@ -16,7 +16,7 @@ public class FilterTest {
 
     /**
      * Unit testing
-     * No need for dependency. Just the unit testing itself
+     * No need for dependency (this feature never interact with dependency). Just the unit testing itself
      */
     @Test
     public void filterTesting(){

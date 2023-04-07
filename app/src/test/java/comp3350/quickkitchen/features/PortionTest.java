@@ -9,10 +9,14 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
 import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.RecipePersistence;
 import comp3350.quickkitchen.persistence.FakePersistenceDB;
+import comp3350.quickkitchen.persistence.hsqldb.RecipePersistenceHSQLDB;
+import comp3350.quickkitchen.utils.TestUtils;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -21,11 +25,16 @@ import static org.mockito.Mockito.verify;
 public class PortionTest {
     private RecipePersistence mockPersistenceDB;    // For integrated testing
     private RecipePersistence fakePersistenceDB;    // For unit testing
+    private File tempDB;
+    private Portion officialPortion;
 
     @Before
-    public void setUp(){
+    public void setUp() throws IOException{
         this.mockPersistenceDB = mock(RecipePersistence.class);
         this.fakePersistenceDB = new FakePersistenceDB();
+        this.tempDB = TestUtils.copyDB();
+        final RecipePersistence realPersistanceDB = new RecipePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        this.officialPortion = new Portion(realPersistanceDB);
     }
 
     /**
@@ -69,5 +78,55 @@ public class PortionTest {
         //------------------------------------------------------------------------------------------
 
         System.out.println("End of Portion feature test.");
+    }
+
+    /**
+     * Integrated testing using mock dependency
+     * We are not modifying the DB, so no need to make a copy of the real dependency
+     */
+    @Test
+    public void integratedTestingWithMock(){
+        // Making instance of Portion with mock db
+        Portion portion = new Portion(mockPersistenceDB);
+        assertNotNull(portion);
+
+        // Making dummy recipe for test
+        ArrayList<String> ingredients = new ArrayList<String>(Arrays.asList("flour", "Cheese", "tomato",
+                "onion"));
+
+        ArrayList<String> steps = new ArrayList<String>(Arrays.asList("step 1", "step2", "step3",
+                "step4"));
+
+        Recipe recipe = new Recipe("2","Recipe1", "3", ingredients,
+                "2", "900", steps, "0",
+                "0", "0", "1", "1");
+
+        String name = "";
+        List<String> result = new ArrayList<>();
+
+        // Testing results (correct methods called)
+        when(mockPersistenceDB.getRecipeByName(name)).thenReturn(recipe);
+        List<String> ingredientList = portion.ingredientsWithPortion(name, 2);
+
+        assertNotNull(ingredientList);
+        assertTrue(ingredientList.equals(ingredients));
+
+        verify(mockPersistenceDB).getRecipeByName(name);
+    }
+
+    @Test
+    public void integratedTesting1(){
+        List<String> ingredientList = officialPortion.ingredientsWithPortion("Onion Ring", 3);
+        assertNotNull(ingredientList);
+        assertTrue( 2 == ingredientList.size());
+        assertTrue( 6 == Character.getNumericValue(ingredientList.get(0).charAt(0)) );
+    }
+
+    @Test
+    public void integratedTesting2(){
+        List<String> ingredientList = officialPortion.ingredientsWithPortion("Poutine", 4);
+        assertNotNull(ingredientList);
+        assertTrue( 4 == ingredientList.size());
+        assertTrue( 4 == Character.getNumericValue(ingredientList.get(0).charAt(0)) );
     }
 }

@@ -8,13 +8,18 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
 import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.FakePersistenceDB;
 import comp3350.quickkitchen.persistence.RecipePersistence;
+import comp3350.quickkitchen.persistence.hsqldb.RecipePersistenceHSQLDB;
+import comp3350.quickkitchen.utils.TestUtils;
 
 public class BookMarkTest {
 
@@ -26,9 +31,11 @@ public class BookMarkTest {
     private ArrayList<String> helperSteps2 = new ArrayList<>();
     private Recipe testRecipe1;
     private Recipe testRecipe2;
+    private File tempDB;
+    private BookMark officialBookMark;
 
     @Before
-    public void setUp(){
+    public void setUp() throws IOException{
         this.mockPersistenceDB = mock(RecipePersistence.class);
         this.fakePersistenceDB = new FakePersistenceDB();
 
@@ -45,11 +52,15 @@ public class BookMarkTest {
         this.testRecipe2 = new Recipe("1", "dummy2" , "3", helperIngredient2,
                 "2", "1000", helperSteps2, "0",
                 "0", "0", "1", "2");
+
+        this.tempDB = TestUtils.copyDB();
+        final RecipePersistence realPersistanceDB = new RecipePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        this.officialBookMark = new BookMark(realPersistanceDB);
     }
 
     /**
      * Unit testing
-     * Test with a Fake dependency (double test)
+     * No need for integrated testing (This feature never interact with dependency). This class never interact with the dependency
      */
 
     @Test
@@ -90,54 +101,4 @@ public class BookMarkTest {
         System.out.println("End of BookMark feature test.");
     }
 
-    /**
-     * Integrated testing using mock dependency
-     * We are not modifying the DB, so no need to make a copy of the real dependency
-     */
-
-    public void integratedTestingWithMock(){
-        // Using mock DB
-
-        ArrayList<String> ingredients = new ArrayList<String>(Arrays.asList("flour", "Cheese", "tomato",
-                "onion"));
-
-        ArrayList<String> steps = new ArrayList<String>(Arrays.asList("step 1", "step2", "step3",
-                "step4"));
-
-        Recipe recipe1 = new Recipe("2","Recipe1", "3", ingredients,
-                "2", "900", steps, "0",
-                "0", "0", "1", "1");
-
-        Recipe recipe2 = new Recipe("1","Recipe2", "2", ingredients,
-                "1", "300", steps, "1",
-                "0", "1", "0.5", "2");
-
-        List<Recipe> result = new ArrayList<>(Arrays.asList(recipe1, recipe2));
-
-        List<String> searchList = new ArrayList<String>();
-
-        BookMark bookmark = new BookMark(mockPersistenceDB);
-
-        assertNotNull(bookmark);
-
-
-        // Making Mock to return the searchList if getRecipeByIngredient() is called
-        when(mockPersistenceDB.getRecipeByIngredient(searchList)).thenReturn(result);
-
-        // Testing addToBookMark() method ----------------------------------------------------------
-        List<Recipe> listOfBookmarkedRecipes = bookmark.addToBookMark(testRecipe1,1);
-        assertTrue( 1 == listOfBookmarkedRecipes.size() );
-        assertTrue(listOfBookmarkedRecipes.get(0).getName().equals("dummy1"));
-
-        listOfBookmarkedRecipes = bookmark.addToBookMark(testRecipe2, 2);
-        assertTrue( 2 == listOfBookmarkedRecipes.size() );
-        assertTrue(listOfBookmarkedRecipes.get(0).getName().equals("dummy1"));
-        assertTrue(listOfBookmarkedRecipes.get(1).getName().equals("dummy2"));
-
-        //-----------------------------------------------------------------------------------------
-
-        verify(mockPersistenceDB).getRecipeByIngredient(searchList);
-
-        System.out.println("End of Bookmark feature test.");
-    }
 }
