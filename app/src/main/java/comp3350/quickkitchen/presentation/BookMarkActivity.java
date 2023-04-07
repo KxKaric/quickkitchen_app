@@ -1,6 +1,7 @@
 package comp3350.quickkitchen.presentation;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import comp3350.quickkitchen.R;
 public class BookMarkActivity extends AppCompatActivity {
     private ArrayAdapter<Recipe> bMArrayAdapter;
     private List<Recipe> recipeList ;
+    private boolean isClicked = false; //to check if user has chosen a recipe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +61,15 @@ public class BookMarkActivity extends AppCompatActivity {
             Button removeBtn =(Button)findViewById(R.id.removeFromBM);
             removeBtn.setEnabled(false);
 
+
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Recipe r = (Recipe) (listView.getItemAtPosition(position));
-                    removeBtn.setEnabled(true);
+                    if(r!=null) {
+                        removeBtn.setEnabled(true);
+                        isClicked = true;
+                    }
 
                     // delete from bookMark (1)
                     removeBtn.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +78,15 @@ public class BookMarkActivity extends AppCompatActivity {
                             RecipeListActivity.BM.delRecipeFromBookMark(r);
                             recipeList.remove(r);
                             bMArrayAdapter.notifyDataSetChanged();
+                            isClicked = false;
                             Toast.makeText(getApplicationContext(), "Deleted from bookmark", Toast.LENGTH_SHORT).show();
 
-                            //disable button is the bookmark is empty
-                            if(recipeList.isEmpty())
+                            //disable button is the bookmark is empty or user did not choose recipe
+                            if(recipeList.isEmpty()||!isClicked )
                                 removeBtn.setEnabled(false);
                         }
                     });
+
 
                     // Create a new PopupMenu object
                     PopupMenu popup = new PopupMenu(BookMarkActivity.this, view);
