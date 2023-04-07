@@ -3,7 +3,6 @@ package comp3350.quickkitchen.features;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -77,5 +76,7 @@ public class FilterTest {
         assertTrue(2 == result6.size());
         assertTrue( "FindThisName".equals(result6.get(0).getName()) );
         assertTrue( "NotIsHere".equals(result6.get(1).getName()) );
+
+        System.out.println("End of Filter feature test.");
     }
 }

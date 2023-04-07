@@ -77,7 +77,6 @@ public class PortionTest {
         assertTrue( 9 == Character.getNumericValue(ingredientList2.get(3).charAt(0)) );
         //------------------------------------------------------------------------------------------
 
-        System.out.println("End of Portion feature test.");
     }
 
     /**
@@ -128,5 +127,7 @@ public class PortionTest {
         assertNotNull(ingredientList);
         assertTrue( 4 == ingredientList.size());
         assertTrue( 4 == Character.getNumericValue(ingredientList.get(0).charAt(0)) );
+
+        System.out.println("End of Portion feature test.");
     }
 }

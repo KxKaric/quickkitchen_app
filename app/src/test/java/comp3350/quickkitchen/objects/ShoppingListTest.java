@@ -9,10 +9,13 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
-import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.RecipePersistence;
 import comp3350.quickkitchen.persistence.FakePersistenceDB;
+import comp3350.quickkitchen.persistence.hsqldb.RecipePersistenceHSQLDB;
+import comp3350.quickkitchen.utils.TestUtils;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -22,11 +25,16 @@ public class ShoppingListTest {
 
     private RecipePersistence mockPersistenceDB;    // For integrated testing
     private RecipePersistence fakePersistenceDB;    // For unit testing
+    private File tempDB;
+    private ShoppingList officialShoppingList;
 
     @Before
-    public void setUp(){
+    public void setUp() throws IOException{
         this.mockPersistenceDB = mock(RecipePersistence.class);
         this.fakePersistenceDB = new FakePersistenceDB();
+        this.tempDB = TestUtils.copyDB();
+        final RecipePersistence realPersistanceDB = new RecipePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        this.officialShoppingList = new ShoppingList(realPersistanceDB);
     }
 
     /**
@@ -35,6 +43,8 @@ public class ShoppingListTest {
      */
     @Test
     public void unitTestingWithFake(){
+
+        // Dummy shopping lists for testing
         List<String> pizzaIngre = new ArrayList<String>(Arrays.asList("flour", "Cheese", "tomato",
                                                                       "onion"));
         List<String> poutineIngre = new ArrayList<String>(Arrays.asList("Potato", "Cheese", "Oil",
@@ -44,6 +54,7 @@ public class ShoppingListTest {
 
         ShoppingList shoppingList = new ShoppingList(fakePersistenceDB);
 
+        // Testing----------------------------------------------------------------------------------
         assertNotNull(shoppingList);
 
         List<String> result1 = shoppingList.getShoppingList("Pizza");
@@ -55,7 +66,7 @@ public class ShoppingListTest {
         assertTrue( poutineIngre.equals(result2) );
         assertTrue( onionRingIngre.equals(result3) );
         assertTrue( frenchFryIngre.equals(result4) );
-
+        //------------------------------------------------------------------------------------------
     }
 
     /**
@@ -89,8 +100,30 @@ public class ShoppingListTest {
         assertTrue(helperIngredient.equals(listToShop));
 
         verify(mockPersistenceDB).getRecipeByName(name);
+    }
+
+    @Test
+    public void integratedTesting1(){
+        List<String> pizzaIngre = new ArrayList<String>(Arrays.asList("5lb flour", " 1lb tomato",
+                                                                " 1onion", " cheese"));
+        List<String> result = officialShoppingList.getShoppingList("Pizza");
+
+        // Testing
+        assertNotNull(result);
+        assertTrue(result.equals(pizzaIngre));
+
+    }
+
+    @Test
+    public void integratedTesting2(){
+        List<String> poutineIngre = new ArrayList<String>(Arrays.asList("1lb potato", " cheese", " oil",
+                " gravy"));
+        List<String> result = officialShoppingList.getShoppingList("Poutine");
+
+        // Testing
+        assertNotNull(result);
+        assertTrue(result.equals(poutineIngre));
 
         System.out.println("End of ShoppingList feature test.");
-
     }
 }

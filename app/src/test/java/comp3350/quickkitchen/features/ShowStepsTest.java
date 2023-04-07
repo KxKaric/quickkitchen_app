@@ -12,20 +12,29 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
 import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.FakePersistenceDB;
 import comp3350.quickkitchen.persistence.RecipePersistence;
+import comp3350.quickkitchen.persistence.hsqldb.RecipePersistenceHSQLDB;
+import comp3350.quickkitchen.utils.TestUtils;
 
 public class ShowStepsTest {
 
     private RecipePersistence mockPersistenceDB;    // For integrated testing
     private RecipePersistence fakePersistenceDB;    // For unit testing
+    private File tempDB;
+    private ShowSteps officialShowStep;
 
     @Before
-    public void setUp(){
+    public void setUp() throws IOException{
         this.mockPersistenceDB = mock(RecipePersistence.class);
         this.fakePersistenceDB = new FakePersistenceDB();
+        this.tempDB = TestUtils.copyDB();
+        final RecipePersistence realPersistanceDB = new RecipePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
+        this.officialShowStep = new ShowSteps(realPersistanceDB);
     }
 
     /**
@@ -122,6 +131,38 @@ public class ShowStepsTest {
         assertTrue(helperSteps.equals(stepToShow));
 
         verify(mockPersistenceDB).getRecipeByName(name);
+    }
+
+    @Test
+    public void integratedTesting1(){
+
+        // The standard step list for french fries
+        ArrayList<String> stepForFrenchFries = new ArrayList<>();
+        stepForFrenchFries.add( "Wash potatoes");
+        stepForFrenchFries.add( " Cut the potatoes into thin slices");
+        stepForFrenchFries.add( " Fry");
+
+        // Testing
+        List<String> listOfSteps = officialShowStep.showSteps("French fries");
+        assertNotNull(listOfSteps);
+        assertTrue(stepForFrenchFries.equals(listOfSteps));
+    }
+
+    @Test
+    public void integratedTesting2(){
+
+        // The standard step list that we use for gravy
+        ArrayList<String> stepForPoutine = new ArrayList<>();
+        stepForPoutine.add( "Wash potatoes");
+        stepForPoutine.add( " Cut the potatoes into thin slices");
+        stepForPoutine.add( " Fry");
+        stepForPoutine.add( " Put gravy");
+        stepForPoutine.add( " Put cheese");
+
+        // Testing
+        List<String> listOfSteps = officialShowStep.showSteps("Poutine");
+        assertNotNull(listOfSteps);
+        assertTrue(stepForPoutine.equals(listOfSteps));
 
         System.out.println("End of ShowSteps feature test.");
     }
