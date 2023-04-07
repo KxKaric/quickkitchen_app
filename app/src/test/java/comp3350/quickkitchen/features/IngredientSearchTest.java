@@ -9,10 +9,14 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.io.File;
+import java.io.IOException;
 
 import comp3350.quickkitchen.objects.Recipe;
 import comp3350.quickkitchen.persistence.RecipePersistence;
 import comp3350.quickkitchen.persistence.FakePersistenceDB;
+import comp3350.quickkitchen.persistence.hsqldb.RecipePersistenceHSQLDB;
+import comp3350.quickkitchen.utils.TestUtils;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -23,10 +27,14 @@ public class IngredientSearchTest {
     private RecipePersistence mockPersistenceDB;    // For integrated testing
     private RecipePersistence fakePersistenceDB;    // For unit testing
 
+    private File tempDB;
+
     @Before
-    public void setUp(){
+    public void setUp() throws IOException{
         this.mockPersistenceDB = mock(RecipePersistence.class);
         this.fakePersistenceDB = new FakePersistenceDB();
+        this.tempDB = TestUtils.copyDB();
+        final RecipePersistence realPersistanceDB = new RecipePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
     }
 
     /**

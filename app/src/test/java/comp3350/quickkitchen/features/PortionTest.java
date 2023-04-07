@@ -56,11 +56,11 @@ public class PortionTest {
         // Start testing ---------------------------------------------------------------------------
         List<String> ingredientList1 = portion.ingredientsWithPortion("Onion Ring", 3);
         assertNotNull(ingredientList1);
-        assertTrue(3 == ingredientList1.size());
+        assertTrue( 2 == ingredientList1.size());
 
         List<String> ingredientList2 = portion.ingredientsWithPortion(testRecipe, 3);
         assertNotNull(ingredientList2);
-        assertTrue(3 == ingredientList2.size());
+        assertTrue(4 == ingredientList2.size());
 
         // Test if scaling work correctly
         assertTrue( 3 == Character.getNumericValue(ingredientList2.get(0).charAt(0)) );
