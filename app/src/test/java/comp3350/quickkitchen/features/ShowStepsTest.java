@@ -133,6 +133,7 @@ public class ShowStepsTest {
         verify(mockPersistenceDB).getRecipeByName(name);
     }
 
+    // Integrated testing with the real dependency (real SQL db)
     @Test
     public void integratedTesting1(){
 

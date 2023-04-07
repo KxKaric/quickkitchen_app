@@ -102,6 +102,7 @@ public class ShoppingListTest {
         verify(mockPersistenceDB).getRecipeByName(name);
     }
 
+    // Integrated testing with the real dependency (real SQL db)
     @Test
     public void integratedTesting1(){
         List<String> pizzaIngre = new ArrayList<String>(Arrays.asList("5lb flour", " 1lb tomato",

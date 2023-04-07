@@ -113,6 +113,7 @@ public class PortionTest {
         verify(mockPersistenceDB).getRecipeByName(name);
     }
 
+    // Integrated testing with the real dependency (real SQL db)
     @Test
     public void integratedTesting1(){
         List<String> ingredientList = officialPortion.ingredientsWithPortion("Onion Ring", 3);

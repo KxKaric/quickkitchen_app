@@ -154,6 +154,7 @@ public class IngredientSearchTest {
         verify(mockPersistenceDB).getRecipeByIngredient(searchList);
     }
 
+    // Integrated testing with the real dependency (real SQL db)
     @Test
     public void integratedTesting1(){
 
