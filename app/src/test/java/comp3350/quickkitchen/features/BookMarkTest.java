@@ -58,7 +58,7 @@ public class BookMarkTest {
 
     /**
      * Unit testing
-     * No need for integrated testing (This feature never interact with dependency). This class never interact with the dependency
+     * No need for integrated testing (This feature never interact with dependency).
      */
 
     @Test

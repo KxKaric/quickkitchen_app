@@ -9,6 +9,7 @@ public class RecipeTest {
 
     /**
      * Unit testing for Recipe class.
+     * No integrated testing (this class never interact with dependency)
      */
     @Test
     public void testRecipe(){
