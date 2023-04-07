@@ -50,7 +50,6 @@ public class RecipeListActivity extends AppCompatActivity {
         try
         {
             ArrayList<String> result = intent.getStringArrayListExtra("result");
-            //Log.e("11",result.toString());
 
             if(!result.isEmpty()) {
                 ingSearch = new IngredientSearch();
