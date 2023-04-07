@@ -26,7 +26,7 @@ public class FakePersistenceDB implements RecipePersistence {
         helperSteps.add( "Wash potates.");
         helperSteps.add( "Cut the potatoes into thin slices.");
         helperSteps.add( "Fry.");
-        Recipe one = new Recipe("1","French fries", "2", helperIngredient, "1", "300", helperSteps, "1", "0", "1", "0.5");
+        Recipe one = new Recipe("1","French fries", "2", helperIngredient, "1", "300", helperSteps, "1", "0", "1", "0.5", "1");
         listOfRecipe.add(one);
 
         //second recipe
@@ -41,7 +41,7 @@ public class FakePersistenceDB implements RecipePersistence {
         helperSteps2.add( "Fry.");
         helperSteps2.add( "Put gravy.");
         helperSteps2.add( "Put cheese.");
-        Recipe two = new Recipe("2","Poutine", "3", helperIngredient2, "2", "900", helperSteps2, "0", "0", "0", "1");
+        Recipe two = new Recipe("2","Poutine", "3", helperIngredient2, "2", "900", helperSteps2, "0", "0", "0", "1", "2");
         listOfRecipe.add(two);
 
         //third recipe
@@ -52,7 +52,7 @@ public class FakePersistenceDB implements RecipePersistence {
         helperSteps3.add( "Wash onions.");
         helperSteps3.add( "Cut the onions into thick slices.");
         helperSteps3.add( "Fry.");
-        Recipe third = new Recipe("3","Onion Ring", "3", helperIngredient3, "2", "500", helperSteps3, "0", "0", "0", "1");
+        Recipe third = new Recipe("3","Onion Ring", "3", helperIngredient3, "2", "500", helperSteps3, "0", "0", "0", "1", "3");
         listOfRecipe.add(third);
 
         //fourth recipe
@@ -67,7 +67,7 @@ public class FakePersistenceDB implements RecipePersistence {
         helperSteps4.add( "Bake for 5 minutes.");
         helperSteps4.add( "Sprinkle cheese on top");
         helperSteps4.add( "Add sauce.");
-        Recipe fourth = new Recipe("4","Pizza", "3", helperIngredient4, "2", "1000", helperSteps4, "0", "0", "0", "1");
+        Recipe fourth = new Recipe("4","Pizza", "3", helperIngredient4, "2", "1000", helperSteps4, "0", "0", "0", "1", "4");
         listOfRecipe.add(fourth);
     }
 

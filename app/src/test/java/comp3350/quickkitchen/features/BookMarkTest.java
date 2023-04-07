@@ -33,7 +33,7 @@ public class BookMarkTest {
         // Create dummy Recipe instances
         Recipe testRecipe1 = new Recipe("0","dummy1", "3", helperIngredient1,
                 "2", "1000", helperSteps1, "0",
-                "0", "0", "1");
+                "0", "0", "1", "1");
 
         ArrayList<String> helperIngredient2 = new ArrayList<>();
         ArrayList<String> helperSteps2 = new ArrayList<>();
@@ -43,14 +43,14 @@ public class BookMarkTest {
         // Create a dummy test Recipe
         Recipe testRecipe2 = new Recipe("1", "dummy2" , "3", helperIngredient2,
                 "2", "1000", helperSteps2, "0",
-                "0", "0", "1");
+                "0", "0", "1", "2");
 
         // Testing addToBookMark() method ----------------------------------------------------------
-        List<Recipe> listOfBookmarkedRecipes = bookmark.addToBookMark(testRecipe1);
+        List<Recipe> listOfBookmarkedRecipes = bookmark.addToBookMark(testRecipe1,1);
         assertTrue( 1 == listOfBookmarkedRecipes.size() );
         assertTrue(listOfBookmarkedRecipes.get(0).getName().equals("dummy1"));
 
-        listOfBookmarkedRecipes = bookmark.addToBookMark(testRecipe2);
+        listOfBookmarkedRecipes = bookmark.addToBookMark(testRecipe2, 2);
         assertTrue( 2 == listOfBookmarkedRecipes.size() );
         assertTrue(listOfBookmarkedRecipes.get(0).getName().equals("dummy1"));
         assertTrue(listOfBookmarkedRecipes.get(1).getName().equals("dummy2"));

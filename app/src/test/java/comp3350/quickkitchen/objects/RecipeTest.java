@@ -13,6 +13,8 @@ public class RecipeTest {
     @Test
     public void testRecipe(){
 
+        ArrayList<String> fakeIngreList = new ArrayList<>();
+        fakeIngreList.add("Nothing");
         // Create and test the first recipe
 
         // Array list of steps
@@ -32,7 +34,7 @@ public class RecipeTest {
 
         Recipe recipe1 = new Recipe("2","Poutine", "3", ingredient1,
                                     "2", "900", stepList1, "0",
-                                    "0", "0", "1");
+                                    "0", "0", "1", "1");
 
         // Asserting the basic fields
         assertNotNull(recipe1);
@@ -43,6 +45,7 @@ public class RecipeTest {
         assertTrue( !recipe1.isVegeterian() );
         assertTrue( !recipe1.isGultenfree() );
         assertTrue( !recipe1.isDairyFree() );
+        assertTrue( 1 == recipe1.getRanking() );
 
         // Asserting if the ingredients are correctly passed into the class
         // Also a test for getIngredients() method
@@ -51,6 +54,10 @@ public class RecipeTest {
         // Asserting if the steps are correctly passed into the class
         // Also a test for getSteps() method
         assertTrue( recipe1.getSteps().equals(stepList1) );
+
+        // Testing setIngredient() method
+        recipe1.setIngredients(fakeIngreList);
+        assertTrue( recipe1.getIngredients().equals(fakeIngreList));
 
 
         // Create and test the second recipe
@@ -68,7 +75,7 @@ public class RecipeTest {
 
         Recipe recipe2 = new Recipe("1","French fries", "2", ingredient2,
                                     "1", "300", stepList2, "1",
-                                    "0", "1", "0.5");
+                                    "0", "1", "0.5", "2");
 
         // Asserting the basic fields
         assertNotNull(recipe2);
@@ -79,6 +86,7 @@ public class RecipeTest {
         assertTrue( recipe2.isVegeterian() );
         assertTrue( !recipe2.isGultenfree() );
         assertTrue( recipe2.isDairyFree() );
+        assertTrue( 2 == recipe2.getRanking() );
 
         // Asserting if the ingredients are correctly passed into the class
         // Also a test for getIngredients() method
@@ -87,6 +95,10 @@ public class RecipeTest {
         // Asserting if the steps are correctly passed into the class
         // Also a test for getSteps() method
         assertTrue( recipe2.getSteps().equals(stepList2) );
+
+        // Testing setIngredient() method
+        recipe2.setIngredients(fakeIngreList);
+        assertTrue( recipe2.getIngredients().equals(fakeIngreList));
 
 
         // Create and test the third recipe
@@ -104,7 +116,7 @@ public class RecipeTest {
 
         Recipe recipe3 = new Recipe("3","Onion Ring", "3", ingredient3,
                                     "2", "500", stepList3, "0",
-                                    "0", "0", "1");
+                                    "0", "0", "1", "3");
 
         // Asserting the basic fields
         assertNotNull(recipe3);
@@ -115,6 +127,7 @@ public class RecipeTest {
         assertTrue( !recipe3.isVegeterian() );
         assertTrue( !recipe3.isGultenfree() );
         assertTrue( !recipe3.isDairyFree() );
+        assertTrue( 3 == recipe3.getRanking() );
 
         // Asserting if the ingredients are correctly passed into the class
         // Also a test for getIngredients() method
@@ -124,6 +137,9 @@ public class RecipeTest {
         // Also a test for getSteps() method
         assertTrue( recipe3.getSteps().equals(stepList3) );
 
+        // Testing setIngredient() method
+        recipe3.setIngredients(fakeIngreList);
+        assertTrue( recipe3.getIngredients().equals(fakeIngreList));
 
         // Create and test the fourth recipe
 
@@ -142,7 +158,7 @@ public class RecipeTest {
 
         Recipe recipe4 = new Recipe("4","Pizza", "3", ingredient4, "2",
                                     "1000", stepList4, "0", "0",
-                                    "0", "1");
+                                    "0", "1", "4");
 
         // Asserting the basic fields
         assertNotNull(recipe4);
@@ -153,6 +169,7 @@ public class RecipeTest {
         assertTrue( !recipe4.isVegeterian() );
         assertTrue( !recipe4.isGultenfree() );
         assertTrue( !recipe4.isDairyFree() );
+        assertTrue( 4 == recipe4.getRanking() );
 
         // Asserting if the ingredients are correctly passed into the class
         // Also a test for getIngredients() method
@@ -161,6 +178,10 @@ public class RecipeTest {
         // Asserting if the steps are correctly passed into the class
         // Also a test for getSteps() method
         assertTrue( recipe4.getSteps().equals(stepList4) );
+
+        // Testing setIngredient() method
+        recipe4.setIngredients(fakeIngreList);
+        assertTrue( recipe4.getIngredients().equals(fakeIngreList));
 
         System.out.println("End of Recipe object test.");
     }

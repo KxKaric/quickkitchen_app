@@ -35,6 +35,11 @@ public class IngredientSearch {
         /**
          * Overload constructor that inject the dependency
          */
+
+        recipeList = new ArrayList<>();
+        recipeNameList = new ArrayList<>();
+        rankObj=new rank();
+
         this.recipePersistence = recipePersistence;
     }
 

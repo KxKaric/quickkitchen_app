@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import comp3350.quickkitchen.objects.Recipe;
@@ -106,20 +107,36 @@ public class IngredientSearchTest {
     public void integratedTestingWithMock(){
 
         // Using mock DB
-        ArrayList searchList = new ArrayList<>();
+
+        ArrayList<String> ingredients = new ArrayList<String>(Arrays.asList("flour", "Cheese", "tomato",
+                "onion"));
+
+        ArrayList<String> steps = new ArrayList<String>(Arrays.asList("step 1", "step2", "step3",
+                "step4"));
+
+        Recipe recipe1 = new Recipe("2","Recipe1", "3", ingredients,
+                "2", "900", steps, "0",
+                "0", "0", "1", "1");
+
+        Recipe recipe2 = new Recipe("1","Recipe2", "2", ingredients,
+                "1", "300", steps, "1",
+                "0", "1", "0.5", "2");
+
+        List<Recipe> result = new ArrayList<>(Arrays.asList(recipe1, recipe2));
+
+        List<String> searchList = new ArrayList<String>();
 
         IngredientSearch ingreSearch = new IngredientSearch(mockPersistenceDB);
 
         assertNotNull(ingreSearch);
 
-        searchList.add("Empty");
 
         // Making Mock to return the searchList if getRecipeByIngredient() is called
-        when(mockPersistenceDB.getRecipeByIngredient(searchList)).thenReturn(searchList);
+        when(mockPersistenceDB.getRecipeByIngredient(searchList)).thenReturn(result);
 
-        List<String> searchResult = ingreSearch.searchRecipeByIngredient(searchList);
+        List<Recipe> searchResult = ingreSearch.searchRecipeByIngredient(searchList);
 
-        assertTrue("Empty".equals(searchResult.get(0)));
+        assertTrue(result.equals(searchResult));
 
         verify(mockPersistenceDB).getRecipeByIngredient(searchList);
 

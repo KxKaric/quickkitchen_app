@@ -112,7 +112,7 @@ public class ShowStepsTest {
 
         Recipe testRecipe = new Recipe("4", name, "3", helperIngredient,
                 "2", "1000", helperSteps, "0",
-                "0", "0", "1");
+                "0", "0", "1", "1");
 
         // Making Mock to return the test recipe if getRecipeByName() is called
         when(mockPersistenceDB.getRecipeByName(name)).thenReturn(testRecipe);

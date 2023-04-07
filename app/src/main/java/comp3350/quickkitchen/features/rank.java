@@ -11,6 +11,9 @@ public class rank {
 
     //sorts recipe based on ranking in ascending order
     public List<Recipe> sortByRank(List<Recipe>data){
+        if(data == null){
+            System.out.println("data is NUL !!!!!!!!!!!!!!");
+        }
         Recipe temp = data.get(0);
         for(int i=0; i<data.size(); i++){
             for(int j=i+1; j<data.size();j++){
