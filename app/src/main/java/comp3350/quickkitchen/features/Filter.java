@@ -14,8 +14,11 @@ public class Filter {
         filteredList = new ArrayList<>();
     }
 
-    //filter for the recipe name
+    // Filter for the recipe name
     public List<Recipe> filterName(String name){
+        /**
+         * Filter recipeList to find Recipe whose name contains the parameter
+         */
         for(Recipe recipe : recipeList){
             if(recipe.getName().toLowerCase().contains(name.toLowerCase())){
                 filteredList.add(recipe);
@@ -24,8 +27,11 @@ public class Filter {
         return filteredList;
     }
 
-    //filter for the calories
+    // Filter for the calories
     public List<Recipe> filterCalories(String calories){
+        /**
+         * Filter recipeList to find Recipe with calories <= parameter
+         */
         for(Recipe recipe : recipeList){
             if(Integer.parseInt(recipe.getCalories()) <=Integer.parseInt(calories)) {
                 filteredList.add(recipe);

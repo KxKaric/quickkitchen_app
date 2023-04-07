@@ -152,7 +152,7 @@ public class RecipeListActivity extends AppCompatActivity {
 
                     // Find the MenuItem for the description and set its title to the recipe's description
                     MenuItem descriptionMenuItem = popup.getMenu().findItem(R.id.menu_description);
-                    descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ chose.ingredientsWithPortion(r.getName(),portionNum));
+                    descriptionMenuItem.setTitle("Ingredients List of "+r.getName()+":"+ chose.ingredientsWithPortion(r,portionNum));
 
                     // Show the PopupMenu
                     popup.show();

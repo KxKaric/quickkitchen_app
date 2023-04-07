@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import comp3350.quickkitchen.objects.Recipe;
+import comp3350.quickkitchen.persistence.RecipePersistence;
 
 public class BookMark {
     private List<Recipe> recipeList;
@@ -14,14 +15,19 @@ public class BookMark {
         this.portionClass = new Portion();
     }
 
+    public BookMark(RecipePersistence recipePersistance){
+        this.recipeList = new ArrayList<>();
+        this.portionClass = new Portion(recipePersistance);
+    }
+
     public List<Recipe> addToBookMark(Recipe newRecipe, int portion){
 
         /**
          * Add the chosen recipe to the bookmark with no duplicates.
          */
-        if(newRecipe!=null&&!recipeList.contains(newRecipe)) {
+        if(newRecipe != null && !recipeList.contains(newRecipe)) {
             //updates the ingredients list with user's input portionNum
-            newRecipe.setIngredients(portionClass.ingredientsWithPortion(newRecipe.getName(), portion));
+            newRecipe.setIngredients(portionClass.ingredientsWithPortion(newRecipe, portion));
             recipeList.add(newRecipe);
         }
         return this.recipeList;
