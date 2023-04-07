@@ -35,9 +35,7 @@ public class Portion {
 
         for( int i=0; i< ingredients.size(); i++) {
             if (Character.isDigit(ingredients.get(i).charAt(0))) {
-                System.out.println("In if 1, value is " +  Character.getNumericValue(ingredients.get(i).charAt(0)));
                 int newPortion = Character.getNumericValue(ingredients.get(i).charAt(0)) * portion;
-                System.out.println("In if 1, value after scale is " + newPortion);
                 String originalString = ingredients.get(i);
                 String numStr = Integer.toString(newPortion);
                 String newString = numStr + originalString.substring(1);

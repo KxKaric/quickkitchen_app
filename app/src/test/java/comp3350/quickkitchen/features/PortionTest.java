@@ -53,15 +53,21 @@ public class PortionTest {
                 "2", "1000", helperSteps, "0",
                 "0", "0", "1", "1");
 
-
-        List<String> ingredientList1 = portion.ingredientsWithPortion("Onion Ring", 5);
+        // Start testing ---------------------------------------------------------------------------
+        List<String> ingredientList1 = portion.ingredientsWithPortion("Onion Ring", 3);
         assertNotNull(ingredientList1);
+        assertTrue(3 == ingredientList1.size());
 
-        List<String> ingredientList2 = portion.ingredientsWithPortion(testRecipe, 5);
+        List<String> ingredientList2 = portion.ingredientsWithPortion(testRecipe, 3);
         assertNotNull(ingredientList2);
+        assertTrue(3 == ingredientList2.size());
 
-        for(String ingredient:ingredientList2){
-            System.out.println(ingredient);
-        }
+        // Test if scaling work correctly
+        assertTrue( 3 == Character.getNumericValue(ingredientList2.get(0).charAt(0)) );
+        assertTrue( 6 == Character.getNumericValue(ingredientList2.get(1).charAt(0)) );
+        assertTrue( 9 == Character.getNumericValue(ingredientList2.get(3).charAt(0)) );
+        //------------------------------------------------------------------------------------------
+
+        System.out.println("End of Portion feature test.");
     }
 }
