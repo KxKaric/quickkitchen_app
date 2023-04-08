@@ -16,6 +16,9 @@ public class BookMark {
     }
 
     public BookMark(RecipePersistence recipePersistance){
+        /**
+         * Constructor with dependency injection
+         */
         this.recipeList = new ArrayList<>();
         this.portionClass = new Portion(recipePersistance);
     }

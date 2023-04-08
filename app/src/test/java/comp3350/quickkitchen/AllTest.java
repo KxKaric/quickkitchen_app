@@ -20,9 +20,9 @@ import comp3350.quickkitchen.persistence.FakePersistenceDBTest;
         IngredientSearchTest.class,
         PortionTest.class,
         RankTest.class,
-        ShoppingListTest.class,
         ShowStepsTest.class,
         RecipeTest.class,
+        ShoppingListTest.class,
         FakePersistenceDBTest.class,
 })
 
