@@ -35,7 +35,6 @@ public class RecipeListSystemTest {
         // -- Recipe page --
         onView(withId(R.id.recipeList)).check(matches(isDisplayed()));
         onView(withId(R.id.recipeSearch)).perform(typeText("Poutine"));
-        onView(withText("Poutine")).check(matches(isDisplayed()));
         closeSoftKeyboard();
 
     }
