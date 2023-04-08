@@ -28,6 +28,9 @@ public class ShowSteps {
     }
 
     public List<String> showSteps(String recipeName){
+        /**
+         * Show steps of a given Recipe instance
+         */
 
         recipe = recipePersistence.getRecipeByName(recipeName);
         List<String> steps = recipe.getSteps();

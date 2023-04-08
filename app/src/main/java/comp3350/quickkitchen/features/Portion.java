@@ -20,16 +20,17 @@ public class Portion {
 
     public Portion(RecipePersistence recipePersistence){
         /**
-         * Overload constructor that take a persistence db as  its parameter
+         *  Overload constructor that inject the dependency
          */
         this.recipePersistence = recipePersistence;
     }
 
-    public List<String> ingredientsWithPortion(Recipe recipe, int portion){ // String recipeName instead of Recipe recipe
+    public List<String> ingredientsWithPortion(Recipe recipe, int portion){
         /**
-         * the portion for shop list and ingredient list.
+         * The portion for shop list and ingredient list.
+         * Given recipeName and portion as parameter,
+         * scale the portion of ingredients to the equivalence
          */
-        //recipe = recipePersistence.getRecipeByName(recipeName);//required recipe
         ingredients = recipe.getIngredients();
         int tem = portion;
 
@@ -54,31 +55,12 @@ public class Portion {
 
     public List<String> ingredientsWithPortion(String recipeName, int portion){
         /**
-         * the portion for shop list and ingredient list.
+         * The portion for shop list and ingredient list.
+         * Given recipeName and portion as parameter,
+         * scale the portion of ingredients to the equivalence
          */
         recipe = recipePersistence.getRecipeByName(recipeName);//required recipe
         return ingredientsWithPortion(recipe, portion);
-        /*
-        ingredients = recipe.getIngredients();
-        int tem = portion;
-
-        for( int i=0;i< ingredients.size();i++) {
-            if (Character.isDigit(ingredients.get(i).charAt(0))) {
-                portion = Character.getNumericValue(ingredients.get(i).charAt(0)) * portion;
-                String originalString = ingredients.get(i);
-                String numStr = Integer.toString(portion);
-                String newString = numStr + originalString.substring(1);
-                ingredients.set(i, newString);
-            }
-            else if(Character.isDigit(ingredients.get(i).charAt(1))){
-                tem = Character.getNumericValue(ingredients.get(i).charAt(1)) *tem;
-                String originalString = ingredients.get(i);
-                String numStr = Integer.toString(tem);
-                String newString = numStr + originalString.substring(2);
-                ingredients.set(i, newString);
-            }
-        }
-        return ingredients;*/
     }
 
 }

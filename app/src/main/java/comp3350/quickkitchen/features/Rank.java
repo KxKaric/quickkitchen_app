@@ -9,7 +9,7 @@ public class Rank {
     public Rank() {
     }
 
-    //sorts recipe based on ranking in ascending order
+    // Sorts recipe based on ranking in ascending order
     public List<Recipe> sortByRank(List<Recipe> data) {
 
         Recipe temp = data.get(0);

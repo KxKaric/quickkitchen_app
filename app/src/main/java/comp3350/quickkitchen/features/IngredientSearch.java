@@ -53,20 +53,4 @@ public class IngredientSearch {
         return this.recipeList;
     }
 
-//    public List<String> searchRecipeNameByIngredient(List<String> ingredients){
-//
-//        /**
-//         * Search db and return a list of Recipe name that use the given ingredients
-//         */
-//
-//        searchRecipeByIngredient(ingredients);
-//
-//        for(int i = 0; i < this.recipeList.size(); i ++){
-//            Recipe temp = recipeList.get(i);
-//            this.recipeNameList.add( temp.getName() );
-//        }
-//
-//        return this.recipeNameList;
-//    }
-
 }

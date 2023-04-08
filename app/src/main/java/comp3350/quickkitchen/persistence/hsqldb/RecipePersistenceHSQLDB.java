@@ -24,6 +24,11 @@ public class RecipePersistenceHSQLDB implements RecipePersistence {
         return DriverManager.getConnection("jdbc:hsqldb:file:" + dbPath + ";shutdown=true", "SA", "");
     }
 
+    /**
+     * @param rs - ResultSet incstance
+     * @return - From rs, create a Recipe instance
+     * @throws SQLException
+     */
     private Recipe fromResultSetMakeRecipe(final ResultSet rs) throws SQLException {
         /**
          * From a ResultSet pointer, create and return a Recipe instance
@@ -52,6 +57,10 @@ public class RecipePersistenceHSQLDB implements RecipePersistence {
         return new Recipe(recipeID, recipeName, difficulty, ingredientList, portion, calories, stepList,vegetarian, glutenFree, diaryFree, duration, rank);
     }
 
+    /**
+     * @param name: String - name of the recipe
+     * @return: Recipe - the recipe with given name
+     */
     @Override
     public Recipe getRecipeByName(String name){
         /**
@@ -80,6 +89,11 @@ public class RecipePersistenceHSQLDB implements RecipePersistence {
             throw new PersistenceException(e);
         }
     }
+
+    /**
+     * @param ingredients: list of ingredients
+     * @return: List of Recipe that use nany of the given ingredients
+     */
     @Override
     public List<Recipe> getRecipeByIngredient(List<String> ingredients) {
         List<Recipe> recipes = new ArrayList<>();
