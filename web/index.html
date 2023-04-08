@@ -25,14 +25,35 @@
         border: none;
         margin: 0px 0px 15px 20px;
       }
+      .main-body {
+        background-color:#faf0e6;
+        font-family: 'Merienda';
+      }
+      .nav-bar {
+        background-color:#eed9c4 !important;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+      }
+      .nav-bar-header {
+        font-weight: 800;
+        font-size: 22px;
+      }
+      .section-header {
+        font-weight: 800;
+        font-size: 24px;
+      }
+      .feature-header {
+        font-weight: 600;
+      }
     </style>
     <title>G-14 | Quick Kitchen</title>
   </head>
-  <body>
+  <body class="main-body">
     <!--top navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="nav-bar navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Quick Kitchen</a>
+        <a class="navbar-brand nav-bar-header" href="#">Quick Kitchen</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -45,7 +66,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-4">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
@@ -82,7 +103,7 @@
                 </li>
                 <li>
                   <a class="dropdown-item" href="#feature4"
-                    >shopping List</a
+                    >Shopping List</a
                   >
                 </li>
                 <li>
@@ -132,7 +153,7 @@
       <!--end of cover-->
       <div class="container">
         <div class="container" id="vision">
-          <h5 style="text-align: center">Vision Statement</h5>
+          <h5 style="text-align: center; margin-top: 15px;" class="section-header">Vision Statement</h5>
           <br />
           <p>
             <img
@@ -208,7 +229,7 @@
         <hr />
         <br />
         <div class="container" id="team">
-          <h5 style="text-align: center">The Dev Team</h5>
+          <h5 style="text-align: center; margin-bottom: 40px;" class="section-header">The Dev Team</h5>
 
           <div class="container">
             <div class="row" align="center">
@@ -252,10 +273,12 @@
         <br />
         <hr />
         <br />
+        <h5 style="text-align: center" class="section-header">Features</h5>
+        <br />
         <div class="container" id="feature1">
-          <h5 style="text-align: center">Feature: Rank System</h5>
+          <h5 class="mb-0 feature-header">Rank System</h5>
           <p>
-            <img class="pic-right" src="./top-three.png" width="150px" />
+            <img class="pic-right" src="./top-three.png" width="140px" />
             <br />
             Ranking view feature on this application allows users to see the
             recipe list based on popularity. With this feature user can easily
@@ -266,10 +289,9 @@
         </div>
         <br />
         <br />
-        <hr />
         <br />
         <div class="container" id="feature2">
-          <h5 style="text-align: center">Feature: Portion Adjustment</h5>
+          <h5 class="mb-0 feature-header"> Portion Adjustment</h5>
           <p>
             <!--picture credit: <a href='https://dryicons.com/free-icons/spoon'> Icon by Dryicons </a> -->
             <img class="pic-right" src="./spoon.svg" width="150px" />
@@ -285,10 +307,9 @@
         </div>
         <br />
         <br />
-        <hr />
         <br />
         <div class="container" id="feature3">
-          <h5 style="text-align: center">Feature: Search by Different Needs</h5>
+          <h5 class="mb-0 feature-header"> Search by Different Needs</h5>
           <p>
             <img class="pic-right" src="./search.png" width="150px" />
             <br />
@@ -303,10 +324,9 @@
         </div>
         <br />
         <br />
-        <hr />
         <br />
         <div class="container" id="feature4">
-          <h5 style="text-align: center">Feature: shopping List</h5>
+          <h5 class="mb-0 feature-header"> Shopping List</h5>
           <p>
             <img class="pic-right" src="./shopping.png" width="150px" />
             <br />
@@ -321,10 +341,9 @@
         </div>
         <br />
         <br />
-        <hr />
         <br />
         <div class="container" id="feature5">
-          <h5 style="text-align: center">Feature: Bookmark Recipes</h5>
+          <h5 class="mb-0 feature-header"> Bookmark Recipes</h5>
           <p>
             <!--picture credit: <a href='https://dryicons.com/free-icons/spoon'> Icon by Dryicons </a> -->
             <img class="pic-right" src="./bookmark.png" width="150px" />
@@ -340,10 +359,9 @@
         </div>
         <br />
         <br />
-        <hr />
         <br />
         <div class="container" id="feature6">
-          <h5 style="text-align: center">Feature: Filter list</h5>
+          <h5 class="mb-0 feature-header"> Filter list</h5>
           <p>
             <img class="pic-right" src="./filter.png" width="150px" />
             <br />
@@ -358,10 +376,9 @@
         </div>
         <br />
         <br />
-        <hr />
         <br />
         <div class="container" id="feature7">
-          <h5 style="text-align: center">Feature: Step by Step instructions</h5>
+          <h5 class="mb-0 feature-header"> Step by Step instructions</h5>
           <p>
             <img class="pic-right" src="./instructions.png" width="150px" />
             <br />
@@ -376,11 +393,11 @@
         </div>
         <br />
         <br />
-        <hr />
         <br />
+        <hr />
         <div class="container" id="download">
-          <h5 style="text-align: center">Download &amp; Installation</h5>
-<p>System preferance: </p>
+          <h5 class="mb-0 feature-header">Download &amp; Installation</h5>
+          <p>System preferance: </p>
         </div>
       </div>
       </div>
